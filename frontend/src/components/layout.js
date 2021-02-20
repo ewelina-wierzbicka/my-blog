@@ -1,8 +1,7 @@
 import React from "react"
 import Header from "./header"
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components"
 import styled from "styled-components"
-import Categories from "./categories"
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -10,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     margin: 0;
-    font-family: 'Michroma', sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 `
 
@@ -30,16 +29,14 @@ margin: 0 4%;
 }
 `
 
-
 const Layout = ({ children }) => {
   return (
     <>
-    <GlobalStyle />
-    <Container>
-      <Header></Header>
-      <Categories></Categories>
-      {children}
-    </Container>
+      <GlobalStyle />
+      <Container>
+        <Header></Header>
+        {children}
+      </Container>
     </>
   )
 }

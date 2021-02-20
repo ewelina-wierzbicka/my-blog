@@ -20,12 +20,12 @@ const HeaderPhoto = styled.div`
   background-image: url(${headerPhoto});
   background-size: cover;
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: -2.2vw;
     left: 75%;
     width: 60%;
-    height: 22vw;
+    height: 21.5vw;
     background-color: #3d4569;
     z-index: -1;
   }
@@ -40,8 +40,8 @@ const IconsWrapper = styled.div`
 `
 
 const Image = styled.img`
- height: calc(40% + 3px);
- margin-right: 10px;
+  height: calc(40% + 3px);
+  margin-right: 10px;
 `
 
 const TitleWrapper = styled.div`
@@ -53,7 +53,7 @@ const TitleWrapper = styled.div`
   @media (min-width: 1920px) {
     right: 2vw;
   }
-  `
+`
 
 const Logo = styled.img`
   position: absolute;
@@ -66,9 +66,9 @@ const TitleFirstWord = styled.h1`
   position: absolute;
   top: 43%;
   right: 0;
-  background-color: #6a6f7d;
+  background-color: rgba(106, 111, 125, 0.8);
   font-size: 3.8vw;
-  letter-spacing: 8px;
+  letter-spacing: 10px;
   color: white;
 `
 
@@ -76,12 +76,11 @@ const TitleNextWords = styled.h1`
   position: absolute;
   right: 0;
   top: 93%;
-  background-color: #6a6f7d;
+  background-color: rgba(106, 111, 125, 0.8);
   font-size: 2.7vw;
-  letter-spacing: 8px;
+  letter-spacing: 10px;
   color: white;
 `
-
 
 const Header = () => {
   return (
