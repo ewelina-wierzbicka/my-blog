@@ -16,8 +16,8 @@
       "required": true
     },
     "article": {
-      "model": "article",
-      "via": "categories"
+      "via": "categories",
+      "model": "article"
     }
   }
 }

@@ -20,7 +20,7 @@
       "required": true
     },
     "image": {
-      "collection": "file",
+      "model": "file",
       "via": "related",
       "allowedTypes": [
         "files",
@@ -34,8 +34,8 @@
       "type": "date"
     },
     "categories": {
-      "via": "article",
-      "collection": "category"
+      "collection": "category",
+      "via": "article"
     }
   }
 }

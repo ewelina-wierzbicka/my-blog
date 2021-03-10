@@ -5,6 +5,7 @@ import homepage from "../images/homepage.png"
 import instagram from "../images/instagram.png"
 import headerPhoto from "../images/steering-wheel.jpg"
 import logo from "../images/logo.png"
+import { Link } from "gatsby"
 
 const ContentWrapper = styled.div`
   position: relative;
@@ -37,11 +38,14 @@ const IconsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  Link, a {
+    height: calc(40% + 3px);
+    margin-right: 10px;
+  }
 `
 
 const Image = styled.img`
-  height: calc(40% + 3px);
-  margin-right: 10px;
+  height: 100%;
 `
 
 const TitleWrapper = styled.div`
@@ -86,9 +90,9 @@ const Header = () => {
   return (
     <ContentWrapper>
       <IconsWrapper>
-        <Image src={homepage} alt="" />
-        <Image src={instagram} alt="" />
-        <Image src={call} alt="" />
+      <Link to="/"><Image src={homepage} alt="" /></Link>
+        <a href="https://www.instagram.com/instruktornaukijazdy/"><Image src={instagram} alt="" /></a>
+        <Link to="/contact"><Image src={call} alt="" /></Link>
       </IconsWrapper>
       <HeaderPhoto></HeaderPhoto>
       <TitleWrapper>

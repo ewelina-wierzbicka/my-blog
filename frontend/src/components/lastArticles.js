@@ -1,5 +1,5 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from "styled-components"
 
 const articlesQuery = graphql`
@@ -9,6 +9,7 @@ const articlesQuery = graphql`
         node {
           id
           title
+          articlePath: gatsbyPath(filePath: "/{strapiArticle.title}")
         }
       }
     }
@@ -47,6 +48,10 @@ const ArticleTitleList = styled.ul`
 const ArticleTitle = styled.li`
   font-size: calc(8px + 0.5vw);
 `
+const ArticleLink = styled(Link)`
+text-decoration: none;
+color: #000000;
+`
 
 const LastArticles = ({ className }) => {
   const data = useStaticQuery(articlesQuery)
@@ -55,7 +60,7 @@ const LastArticles = ({ className }) => {
       <ListTitle>Najnowsze artykuły</ListTitle>
       <ArticleTitleList>
         {data.allStrapiArticle.edges.map(el => (
-          <ArticleTitle key={el.node.id}>{el.node.title}</ArticleTitle>
+          <ArticleTitle key={el.node.id}><ArticleLink to={el.node.articlePath}>{el.node.title}</ArticleLink></ArticleTitle>
         ))}
       </ArticleTitleList>
     </div>

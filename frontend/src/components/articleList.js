@@ -1,5 +1,5 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from "styled-components"
 import arrow from "../images/arrow.png"
 
@@ -11,8 +11,9 @@ const articlesQuery = graphql`
           id
           title
           image {
-            url
+            publicURL
           }
+          articlePath: gatsbyPath(filePath: "/{strapiArticle.title}")
         }
       }
     }
@@ -32,12 +33,12 @@ const ArticleImageList = styled.div`
   }
 `
 
-const ArticleImage = styled.div`
+const ArticleImage = styled(Link)`
 position: relative;
 width: 25vw;
 height: 25vw;
 background-size: cover;
-@media(max-width: 627px) {
+@media(max-width: 425px) {
   width: 40vw;
   height: 40vw;
 }
@@ -72,7 +73,7 @@ padding: 0 8px;
 }
 `
 
-const ArticleLink = styled.div`
+const ArticleMore = styled.p`
 position: absolute;
   width: calc(50px + 8vw);
   height: 4vw;
@@ -89,6 +90,7 @@ position: absolute;
   background-repeat: no-repeat;
   background-position: 94% 50%;
   padding-right: 3vw;
+  text-decoration: none;
 }
 `
 
@@ -98,15 +100,16 @@ const ArticleList = () => {
     <ArticleImageList>
       {data.allStrapiArticle.edges.map(el => (
         <ArticleImage
+          to={el.node.articlePath}
           key={el.node.id}
           style={{
-            backgroundImage: `url(http://localhost:1337${el.node.image[0].url})`,
+            backgroundImage: `url(http://localhost:8000${el.node.image.publicURL})`,
           }}
         >
           <ArticleTitle>
             <span>{el.node.title}</span>
           </ArticleTitle>
-          <ArticleLink>Czytaj dalej</ArticleLink>
+          <ArticleMore>Czytaj dalej</ArticleMore>
         </ArticleImage>
       ))}
     </ArticleImageList>

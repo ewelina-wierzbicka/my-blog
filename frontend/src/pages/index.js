@@ -4,7 +4,7 @@ import ArticleList from "../components/articleList"
 import Categories from "../components/categories"
 import Search from "../components/search"
 import styled from "styled-components"
-import LastArticles from "../components/lastArticles"
+import Content from "../components/content"
 
 const Menu = styled.div`
   display: flex;
@@ -13,21 +13,16 @@ const Menu = styled.div`
   align-items: center;
 `
 
-const Content = styled.div`
+const MainContent = styled(Content)`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 2vw;
-  @media (max-width: 425px) {
+  @media (max-width: 627px) {
     justify-content: center;
   }
 `
 
-const HiddenLastArticles = styled(LastArticles)`
-  @media(max-width: 425px) {
-    display: none;
-  }
-`
 
 const IndexPage = () => (
   <Layout>
@@ -35,10 +30,9 @@ const IndexPage = () => (
       <Categories></Categories>
       <Search></Search>
     </Menu>
-    <Content>
+    <MainContent>
       <ArticleList></ArticleList>
-      <HiddenLastArticles></HiddenLastArticles>
-    </Content>
+    </MainContent>
   </Layout>
 )
 
