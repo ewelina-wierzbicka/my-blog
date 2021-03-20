@@ -15,9 +15,9 @@
       "type": "string",
       "required": true
     },
-    "article": {
-      "via": "categories",
-      "model": "article"
+    "pathName": {
+      "type": "string",
+      "required": true
     }
   }
 }

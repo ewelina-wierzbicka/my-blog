@@ -34,8 +34,7 @@
       "type": "date"
     },
     "categories": {
-      "collection": "category",
-      "via": "article"
+      "collection": "category"
     }
   }
 }

@@ -1,18 +1,18 @@
-import React from "react"
-import styled from "styled-components"
-import call from "../images/call.png"
-import homepage from "../images/homepage.png"
-import instagram from "../images/instagram.png"
-import headerPhoto from "../images/steering-wheel.jpg"
-import logo from "../images/logo.png"
-import { Link } from "gatsby"
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'gatsby';
+import call from '../images/call.png';
+import homepage from '../images/homepage.png';
+import instagram from '../images/instagram.png';
+import headerPhoto from '../images/steering-wheel.jpg';
+import logo from '../images/logo.png';
 
 const ContentWrapper = styled.div`
   position: relative;
   height: 27vw;
   width: 100%;
   overflow: hidden;
-`
+`;
 
 const HeaderPhoto = styled.div`
   width: 75%;
@@ -30,7 +30,7 @@ const HeaderPhoto = styled.div`
     background-color: #3d4569;
     z-index: -1;
   }
-`
+`;
 
 const IconsWrapper = styled.div`
   margin-left: 30px;
@@ -38,15 +38,16 @@ const IconsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  Link, a {
+  Link,
+  a {
     height: calc(40% + 3px);
     margin-right: 10px;
   }
-`
+`;
 
 const Image = styled.img`
   height: 100%;
-`
+`;
 
 const TitleWrapper = styled.div`
   position: absolute;
@@ -57,14 +58,14 @@ const TitleWrapper = styled.div`
   @media (min-width: 1920px) {
     right: 2vw;
   }
-`
+`;
 
 const Logo = styled.img`
   position: absolute;
   right: 0;
   top: 0;
   width: 13vw;
-`
+`;
 
 const TitleFirstWord = styled.h1`
   position: absolute;
@@ -74,7 +75,7 @@ const TitleFirstWord = styled.h1`
   font-size: 3.8vw;
   letter-spacing: 10px;
   color: white;
-`
+`;
 
 const TitleNextWords = styled.h1`
   position: absolute;
@@ -84,24 +85,28 @@ const TitleNextWords = styled.h1`
   font-size: 2.7vw;
   letter-spacing: 10px;
   color: white;
-`
+`;
 
-const Header = () => {
-  return (
-    <ContentWrapper>
-      <IconsWrapper>
-      <Link to="/"><Image src={homepage} alt="" /></Link>
-        <a href="https://www.instagram.com/instruktornaukijazdy/"><Image src={instagram} alt="" /></a>
-        <Link to="/contact"><Image src={call} alt="" /></Link>
-      </IconsWrapper>
-      <HeaderPhoto></HeaderPhoto>
-      <TitleWrapper>
-        <Logo src={logo} alt=""></Logo>
-        <TitleFirstWord>INSTRUKTOR</TitleFirstWord>
-        <TitleNextWords>NAUKI JAZDY</TitleNextWords>
-      </TitleWrapper>
-    </ContentWrapper>
-  )
-}
+const Header = () => (
+  <ContentWrapper>
+    <IconsWrapper>
+      <Link to="/">
+        <Image src={homepage} alt="" />
+      </Link>
+      <a href="https://www.instagram.com/instruktornaukijazdy/">
+        <Image src={instagram} alt="" />
+      </a>
+      <Link to="/contact">
+        <Image src={call} alt="" />
+      </Link>
+    </IconsWrapper>
+    <HeaderPhoto />
+    <TitleWrapper>
+      <Logo src={logo} alt="" />
+      <TitleFirstWord>INSTRUKTOR</TitleFirstWord>
+      <TitleNextWords>NAUKI JAZDY</TitleNextWords>
+    </TitleWrapper>
+  </ContentWrapper>
+);
 
-export default Header
+export default Header;

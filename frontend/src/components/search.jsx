@@ -1,13 +1,10 @@
-import React, { useState } from "react"
-import styled from "styled-components"
-import { useQuery, graphql } from "gatsby"
-import searchIcon from "../images/magnifyingGlass.png"
-
-// const searchQuery = graphql`
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import searchIcon from '../images/magnifyingGlass.png';
 
 const InputContainer = styled.div`
   width: 30%;
-`
+`;
 
 const Input = styled.input`
   width: calc(50px + 18vw);
@@ -24,18 +21,19 @@ const Input = styled.input`
   &:focus {
     outline: none;
   }
-`
-const Search = () => {
-  const [searchText, setSearchText] = useState("")
+`;
 
-  const handleSubmit = e => {
+const Search = () => {
+  const [searchText, setSearchText] = useState('');
+
+  const handleSubmit = (e) => {
     //     if (e.key === "enter") {
     //     }
-  }
+  };
 
-  const handleChange = e => {
-    setSearchText(e.target.value)
-  }
+  const handleChange = (e) => {
+    setSearchText(e.target.value);
+  };
 
   return (
     <InputContainer>
@@ -43,9 +41,9 @@ const Search = () => {
         onChange={handleChange}
         type="text"
         onKeyDown={handleSubmit}
-      ></Input>
+      />
     </InputContainer>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;

@@ -1,6 +1,6 @@
-import React from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
-import styled from "styled-components"
+import React from 'react';
+import { useStaticQuery, graphql, Link } from 'gatsby';
+import styled from 'styled-components';
 
 const articlesQuery = graphql`
   query {
@@ -14,7 +14,7 @@ const articlesQuery = graphql`
       }
     }
   }
-`
+`;
 
 const ListTitle = styled.p`
   text-transform: uppercase;
@@ -41,30 +41,35 @@ const ListTitle = styled.p`
     height: 2px;
     background-color: #bfbfbf;
   }
-`
+`;
+
 const ArticleTitleList = styled.ul`
   line-height: 2;
-`
+`;
+
 const ArticleTitle = styled.li`
   font-size: calc(8px + 0.5vw);
-`
+`;
+
 const ArticleLink = styled(Link)`
-text-decoration: none;
-color: #000000;
-`
+  text-decoration: none;
+  color: #000000;
+`;
 
 const LastArticles = ({ className }) => {
-  const data = useStaticQuery(articlesQuery)
+  const data = useStaticQuery(articlesQuery);
   return (
     <div className={className}>
       <ListTitle>Najnowsze artykuły</ListTitle>
       <ArticleTitleList>
-        {data.allStrapiArticle.edges.map(el => (
-          <ArticleTitle key={el.node.id}><ArticleLink to={el.node.articlePath}>{el.node.title}</ArticleLink></ArticleTitle>
+        {data.allStrapiArticle.edges.map((el) => (
+          <ArticleTitle key={el.node.id}>
+            <ArticleLink to={el.node.articlePath}>{el.node.title}</ArticleLink>
+          </ArticleTitle>
         ))}
       </ArticleTitleList>
     </div>
-  )
-}
+  );
+};
 
-export default LastArticles
+export default LastArticles;
