@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import call from '../images/call.png';
+import contact from '../images/contact.png';
 import homepage from '../images/homepage.png';
 import instagram from '../images/instagram.png';
 import headerPhoto from '../images/steering-wheel.jpg';
@@ -34,14 +34,14 @@ const HeaderPhoto = styled.div`
 
 const IconsWrapper = styled.div`
   margin-left: 30px;
-  height: calc(3vw + 5px);
+  height: calc(3.5vw + 5px);
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   Link,
   a {
-    height: calc(40% + 3px);
-    margin-right: 10px;
+    height: calc(50% + 3px);
+    margin-right: 15px;
   }
 `;
 
@@ -73,7 +73,7 @@ const TitleFirstWord = styled.h1`
   right: 0;
   background-color: rgba(106, 111, 125, 0.8);
   font-size: 3.8vw;
-  letter-spacing: 10px;
+  letter-spacing: calc(0.5vw + 4px);
   color: white;
 `;
 
@@ -83,7 +83,7 @@ const TitleNextWords = styled.h1`
   top: 93%;
   background-color: rgba(106, 111, 125, 0.8);
   font-size: 2.7vw;
-  letter-spacing: 10px;
+  letter-spacing: calc(0.5vw + 4px);
   color: white;
 `;
 
@@ -93,12 +93,12 @@ const Header = () => (
       <Link to="/">
         <Image src={homepage} alt="" />
       </Link>
+      <Link to="/contact">
+        <Image src={contact} alt="" />
+      </Link>
       <a href="https://www.instagram.com/instruktornaukijazdy/">
         <Image src={instagram} alt="" />
       </a>
-      <Link to="/contact">
-        <Image src={call} alt="" />
-      </Link>
     </IconsWrapper>
     <HeaderPhoto />
     <TitleWrapper>

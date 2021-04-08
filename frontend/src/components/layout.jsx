@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import Header from './header';
+import Footer from './footer';
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -12,7 +13,13 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const Wrapper = styled.div`
+min-height: 100vh;
+position: relative;
+`;
+
 const Container = styled.div`
+padding-bottom: 14vw;
   margin: 0 4%;
   @media (min-width: 1366px) {
     margin: 0 8%;
@@ -26,13 +33,14 @@ const Container = styled.div`
 `;
 
 const Layout = ({ children }) => (
-  <>
+  <Wrapper>
     <GlobalStyle />
     <Container>
       <Header />
       {children}
     </Container>
-  </>
+    <Footer />
+  </Wrapper>
 );
 
 export default Layout;

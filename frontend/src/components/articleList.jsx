@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
+import slugify from '@sindresorhus/slugify';
 import arrow from '../images/arrow.png';
 
 const ArticleImageList = styled.div`
@@ -21,7 +22,7 @@ const ArticleImage = styled(Link)`
   width: 25vw;
   height: 25vw;
   background-size: cover;
-  @media(max-width: 425px) {
+  @media (max-width: 425px) {
     width: 40vw;
     height: 40vw;
   }
@@ -75,22 +76,48 @@ const ArticleMore = styled.p`
 `;
 
 const ArticleList = ({ data }) => (
-  <ArticleImageList>
-    {data.allStrapiArticle.edges.map((el) => (
-      <ArticleImage
-        to={el.node.articlePath}
-        key={el.node.id}
-        style={{
-          backgroundImage: `url(http://localhost:8000${el.node.image.publicURL})`,
-        }}
-      >
-        <ArticleTitle>
-          <span>{el.node.title}</span>
-        </ArticleTitle>
-        <ArticleMore>Czytaj dalej</ArticleMore>
-      </ArticleImage>
-    ))}
-  </ArticleImageList>
+  <>
+    {data.allStrapiArticle && (
+      <ArticleImageList>
+        {data.allStrapiArticle.edges.map(el => (
+          <ArticleImage
+            to={el.node.articlePath}
+            key={el.node.id}
+            style={{
+              backgroundImage: `url(http://localhost:8000${el.node.image.publicURL})`,
+            }}
+          >
+            <ArticleTitle>
+              <span>{el.node.title}</span>
+            </ArticleTitle>
+            <ArticleMore>Czytaj dalej</ArticleMore>
+          </ArticleImage>
+        ))}
+      </ArticleImageList>
+    )}
+    {data.title && (
+      <ArticleImageList>
+        {[...data.title, ...data.text]
+          .filter(
+            (el, ind, arr) => arr.findIndex(elem => elem.id === el.id) === ind
+          )
+          .map(el => (
+            <ArticleImage
+              to={`/${slugify(el.title)}`}
+              key={el.id}
+              style={{
+                backgroundImage: `url(http://localhost:1337${el.image.url})`,
+              }}
+            >
+              <ArticleTitle>
+                <span>{el.title}</span>
+              </ArticleTitle>
+              <ArticleMore>Czytaj dalej</ArticleMore>
+            </ArticleImage>
+          ))}
+      </ArticleImageList>
+    )}
+  </>
 );
 
 export default ArticleList;

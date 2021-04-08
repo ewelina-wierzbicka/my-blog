@@ -1,7 +1,12 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/browser-apis/
- */
+import React from "react"
+import { GraphQLClient, ClientContext } from "graphql-hooks"
 
-// You can delete this file if you're not using it
+const client = new GraphQLClient({
+  url: "http://localhost:1337/graphql",
+})
+
+const wrapRootElement = ({ element }) => (
+  <ClientContext.Provider value={client}>{element}</ClientContext.Provider>
+)
+
+export default wrapRootElement

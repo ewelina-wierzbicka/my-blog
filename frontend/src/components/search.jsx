@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { navigate } from 'gatsby';
+import slugify from '@sindresorhus/slugify';
 import searchIcon from '../images/magnifyingGlass.png';
 
 const InputContainer = styled.div`
@@ -27,22 +29,30 @@ const Search = () => {
   const [searchText, setSearchText] = useState('');
 
   const handleSubmit = (e) => {
-    //     if (e.key === "enter") {
-    //     }
+    if (e.key === 'Enter') {
+      navigate(
+        `/search:${slugify(searchText)}`,
+        {
+          state: { searchText },
+        }
+      )
+    }
   };
 
   const handleChange = (e) => {
-    setSearchText(e.target.value);
+       setSearchText(e.target.value);
   };
 
   return (
-    <InputContainer>
-      <Input
-        onChange={handleChange}
-        type="text"
-        onKeyDown={handleSubmit}
-      />
-    </InputContainer>
+    <>
+      <InputContainer>
+        <Input
+          onChange={handleChange}
+          type="text"
+          onKeyDown={handleSubmit}
+        />
+      </InputContainer>
+    </>
   );
 };
 

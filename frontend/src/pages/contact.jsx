@@ -13,14 +13,13 @@ const ContactHeader = styled.h1`
 const ContactForm = styled.form`
   margin: 5vw auto;
   width: calc(20vw + 100px);
-  & > * {
+  & * {
     display: block;
     width: 100%;
     font-size: calc(1vw + 5px);
   }
   & label {
     margin-top: 20px;
-    margin-bottom: 5px;
   }
   & input {
     height: calc(1.5vw + 20px);
@@ -81,19 +80,6 @@ const Contact = () => {
         </label>
         {formik.errors.firstName && formik.touched.firstName ? (
           <ErrorMessage>{formik.errors.firstName}</ErrorMessage>
-        ) : null}
-        <label htmlFor="lastName">
-          Nazwisko
-          <input
-            id="lastName"
-            name="lastName"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.lastName}
-          />
-        </label>
-        {formik.errors.lastName && formik.touched.lastName ? (
-          <ErrorMessage>{formik.errors.lastName}</ErrorMessage>
         ) : null}
         <label htmlFor="email">
           Adres mailowy
