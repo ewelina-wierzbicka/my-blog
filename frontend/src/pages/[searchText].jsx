@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { useQuery } from 'graphql-hooks';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import slugify from '@sindresorhus/slugify';
 import Layout from '../components/layout';
 import Categories from '../components/categories';
 import Search from '../components/search';
 import Content from '../components/content';
 import ArticleList from '../components/articleList';
+import { client } from '../../gatsby-browser';
 
 const SEARCH_QUERY = `query($search: String) {
   title: articles(where: {title_contains: $search}) {
@@ -37,6 +39,7 @@ const MainContent = styled(Content)`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  position: relative;
   margin-top: 2vw;
   @media (max-width: 627px) {
     justify-content: center;
@@ -57,11 +60,24 @@ const ErrorWrapper = styled.div`
 `;
 
 const SearchText = ({ location }) => {
-  const { searchText } = location.state
+  const { searchText } = location.state;
   const { loading, error, data } = useQuery(SEARCH_QUERY, {
+    client,
     variables: { search: searchText },
-  })
+  });
 
+  let articles = [];
+  if (data) {
+    articles = [...data.title, ...data.text]
+      .filter(
+        (el, ind, arr) => arr.findIndex(elem => elem.id === el.id) === ind
+      )
+      .map(article => ({
+        ...article,
+        articlePath: `/${slugify(article.title).replace("-h-", "/h-")}`,
+        imagePath: `${process.env.API_URL}${article.image.url}`,
+      }));
+  };
   return (
     <Layout>
       <Menu>
@@ -74,7 +90,7 @@ const SearchText = ({ location }) => {
             <CircularProgress />
           </LoadingWrapper>
         )}
-        {data && <ArticleList data={data} />}
+        {data && <ArticleList articles={articles} />}
         {error && (
           <ErrorWrapper>
             <div>Wystąpił błąd</div>

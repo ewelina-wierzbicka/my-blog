@@ -21,7 +21,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-strapi',
       options: {
-        apiURL: process.env.API_URL || 'http://localhost:1337',
+        apiURL: process.env.API_URL,
         contentTypes: [
           'article',
           'category',
@@ -34,6 +34,7 @@ module.exports = {
       options: {
         fonts: [
           'Montserrat:400',
+          'Antonio: 400'
         ],
         display: 'swap',
       },

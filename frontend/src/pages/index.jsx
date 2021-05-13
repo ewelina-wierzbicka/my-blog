@@ -33,6 +33,7 @@ const Menu = styled.div`
 
 const MainContent = styled(Content)`
   display: flex;
+  position: relative;
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 2vw;
@@ -43,6 +44,12 @@ const MainContent = styled(Content)`
 
 const IndexPage = () => {
   const data = useStaticQuery(articlesQuery);
+  const articles = data.allStrapiArticle.edges
+    .map(el => el.node)
+    .map(article => ({
+      ...article,
+      imagePath: `${process.env.GATSBY_HOST_URL}/${article.image.publicURL}`,
+    }));
   return (
     <Layout>
       <Menu>
@@ -50,7 +57,7 @@ const IndexPage = () => {
         <Search />
       </Menu>
       <MainContent>
-        <ArticleList data={data} />
+        <ArticleList articles={articles} />
       </MainContent>
     </Layout>
   );

@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import LastArticles from './lastArticles';
 
 const HiddenLastArticles = styled(LastArticles)`
-  @media (max-width: 627px) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  @media (max-width: 700px) {
     display: none;
   }
 `;

@@ -8,11 +8,13 @@ import Search from '../components/search';
 import Content from '../components/content';
 
 export const query = graphql`
-  query($id: String, $name: String){
-    strapiCategory(id: {eq: $id}) {
+  query($id: String, $name: String) {
+    strapiCategory(id: { eq: $id }) {
       name
     }
-    allStrapiArticle(filter: {categories: {elemMatch: {pathName: {eq: $name}}}}) {
+    allStrapiArticle(
+      filter: { categories: { elemMatch: { pathName: { eq: $name } } } }
+    ) {
       edges {
         node {
           id
@@ -38,6 +40,7 @@ const MainContent = styled(Content)`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  position: relative;
   margin-top: 2vw;
   @media (max-width: 627px) {
     justify-content: center;
@@ -46,6 +49,12 @@ const MainContent = styled(Content)`
 
 const Category = (props) => {
   const { data } = props;
+  const articles = data.allStrapiArticle.edges
+    .map(el => el.node)
+    .map(article => ({
+      ...article,
+      imagePath:  `${process.env.GATSBY_HOST_URL}/${article.image.publicURL}`,
+    }));
   return (
     <Layout>
       <Menu>
@@ -53,7 +62,7 @@ const Category = (props) => {
         <Search />
       </Menu>
       <MainContent>
-        <ArticleList data={data} />
+        <ArticleList articles={articles} />
       </MainContent>
     </Layout>
   );

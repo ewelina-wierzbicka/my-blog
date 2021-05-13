@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import styled from 'styled-components';
+import { useMutation } from 'graphql-hooks';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Layout from '../components/layout';
 import contactSchema from '../schemas/contactSchema';
+import { client } from '../../gatsby-browser';
+
+const EMAIL_MUTATION = `mutation SendContact($email: createEmailInput) {
+  createEmail(input: $email) {
+    email {
+      id
+    }
+  }
+}`
 
 const ContactHeader = styled.h1`
   font-size: calc(2vw + 6px);
@@ -31,7 +43,7 @@ const ContactForm = styled.form`
     width: 100px;
     height: 30px;
     margin: 40px auto;
-}
+  }
 `;
 
 const ErrorMessage = styled.div`
@@ -40,46 +52,44 @@ const ErrorMessage = styled.div`
 `;
 
 const Contact = () => {
+  const [createEmail, state] = useMutation(EMAIL_MUTATION, {client});
   const formik = useFormik({
     initialValues: {
-      firstName: '',
-      lastName: '',
+      firstname: '',
       email: '',
       message: '',
     },
     validationSchema: contactSchema,
-    onSubmit: async (values) => {
-      const response = await fetch('http://localhost:1337/api/email',
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            text: values.message,
-            subject: 'zapytanie ze strony',
-            from: 'test2@koson.pl',
-            replyTo: values.email,
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-    },
-  });
+    onSubmit: values => {
+      createEmail({ variables: { email: {data: values } } });
+  },
+}
+)
+useEffect(() => {
+  if(state.data?.createEmail) {
+    toast.success("Mail zostal wysłany");
+    formik.resetForm();
+  } else if (state.error) {
+    toast.error("Wystąpił błąd");
+    }
+}, [state.data, state.error]);
+
   return (
     <Layout>
       <ContactHeader>Napisz do mnie</ContactHeader>
       <ContactForm onSubmit={formik.handleSubmit}>
-        <label htmlFor="firstName">
+        <label htmlFor="firstname">
           Imię
           <input
-            id="firstName"
-            name="firstName"
+            id="firstname"
+            name="firstname"
             type="text"
             onChange={formik.handleChange}
-            value={formik.values.firstName}
+            value={formik.values.firstname}
           />
         </label>
-        {formik.errors.firstName && formik.touched.firstName ? (
-          <ErrorMessage>{formik.errors.firstName}</ErrorMessage>
+        {formik.errors.firstname && formik.touched.firstname ? (
+          <ErrorMessage>{formik.errors.firstname}</ErrorMessage>
         ) : null}
         <label htmlFor="email">
           Adres mailowy
@@ -109,6 +119,7 @@ const Contact = () => {
         ) : null}
         <button type="submit">Wyślij</button>
       </ContactForm>
+        <ToastContainer />
     </Layout>
   );
 };

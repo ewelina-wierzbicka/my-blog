@@ -32,6 +32,7 @@ const MainContent = styled(Content)`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  position: relative;
   margin-top: 2vw;
   @media (max-width: 627px) {
     justify-content: center;
@@ -57,7 +58,7 @@ const Article = (props) => {
           <Title>{data.strapiArticle.title}</Title>
           <Text
             source={data.strapiArticle.text}
-            transformImageUri={(uri) => (uri.startsWith('http') ? uri : `http://localhost:1337${uri}`)}
+            transformImageUri={(uri) => (uri.startsWith('http') ? uri : `${process.env.API_URL}/${uri}`)}
           />
         </ArticleContent>
       </MainContent>

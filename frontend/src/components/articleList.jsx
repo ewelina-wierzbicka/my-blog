@@ -1,19 +1,22 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
-import slugify from '@sindresorhus/slugify';
 import arrow from '../images/arrow.png';
 
 const ArticleImageList = styled.div`
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   column-gap: 5vw;
   row-gap: 5vw;
   margin-left: 1vw;
-  @media (max-width: 627px) {
+  @media (max-width: 700px) {
     justify-content: center;
+    row-gap: 7vw;
+  }
+  @media (max-width: 600px) {
+    row-gap: 9vw;
   }
 `;
 
@@ -22,9 +25,22 @@ const ArticleImage = styled(Link)`
   width: 25vw;
   height: 25vw;
   background-size: cover;
-  @media (max-width: 425px) {
+  @media (max-width: 700px) {
     width: 40vw;
     height: 40vw;
+  }
+  @media (max-width: 600px) {
+    width: 60vw;
+    height: 60vw;
+  }
+  &:first-child {
+    width: 40vw;
+    height: 40vw;
+    margin: 0 10vw;
+    @media (max-width: 600px) {
+      width: 60vw;
+      height: 60vw;
+    }
   }
   &:before {
     content: '';
@@ -45,7 +61,7 @@ const ArticleTitle = styled.div`
   width: 100%;
   height: 100%;
   color: #ffffff;
-  font-size: 2.2vw;
+  font-size: 2.8vw;
   font-weight: bold;
   text-transform: uppercase;
   display: flex;
@@ -53,6 +69,9 @@ const ArticleTitle = styled.div`
   justify-content: center;
   text-align: center;
   padding: 0 8px;
+  font-family: 'Antonio', sans-serif;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px #3d4569;
 `;
 
 const ArticleMore = styled.p`
@@ -75,49 +94,23 @@ const ArticleMore = styled.p`
   text-decoration: none;
 `;
 
-const ArticleList = ({ data }) => (
-  <>
-    {data.allStrapiArticle && (
-      <ArticleImageList>
-        {data.allStrapiArticle.edges.map(el => (
-          <ArticleImage
-            to={el.node.articlePath}
-            key={el.node.id}
-            style={{
-              backgroundImage: `url(http://localhost:8000${el.node.image.publicURL})`,
-            }}
-          >
-            <ArticleTitle>
-              <span>{el.node.title}</span>
-            </ArticleTitle>
-            <ArticleMore>Czytaj dalej</ArticleMore>
-          </ArticleImage>
-        ))}
-      </ArticleImageList>
-    )}
-    {data.title && (
-      <ArticleImageList>
-        {[...data.title, ...data.text]
-          .filter(
-            (el, ind, arr) => arr.findIndex(elem => elem.id === el.id) === ind
-          )
-          .map(el => (
-            <ArticleImage
-              to={`/${slugify(el.title)}`}
-              key={el.id}
-              style={{
-                backgroundImage: `url(http://localhost:1337${el.image.url})`,
-              }}
-            >
-              <ArticleTitle>
-                <span>{el.title}</span>
-              </ArticleTitle>
-              <ArticleMore>Czytaj dalej</ArticleMore>
-            </ArticleImage>
-          ))}
-      </ArticleImageList>
-    )}
-  </>
+const ArticleList = ({ articles }) => (
+  <ArticleImageList>
+    {articles.map(el => (
+      <ArticleImage
+        to={el.articlePath}
+        key={el.id}
+        style={{
+          backgroundImage: `url(${el.imagePath})`,
+        }}
+      >
+        <ArticleTitle>
+          <span>{el.title}</span>
+        </ArticleTitle>
+        <ArticleMore>Czytaj dalej</ArticleMore>
+      </ArticleImage>
+    ))}
+  </ArticleImageList>
 );
 
 export default ArticleList;
