@@ -1,9 +1,7 @@
 import React from "react"
-import { GraphQLClient, ClientContext } from "graphql-hooks"
+import { ClientContext } from "graphql-hooks"
+import client from "./graphQlClient"
 
-export const client = new GraphQLClient({
-  url: `${process.env.API_URL}/graphql`,
-})
 
 const wrapRootElement = ({ element }) => (
   <ClientContext.Provider value={client}>{element}</ClientContext.Provider>

@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Layout from '../components/layout';
 import contactSchema from '../schemas/contactSchema';
-import { client } from '../../gatsby-browser';
+import client from '../../graphQlClient';
 
 const EMAIL_MUTATION = `mutation SendContact($email: createEmailInput) {
   createEmail(input: $email) {

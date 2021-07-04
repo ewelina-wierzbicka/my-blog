@@ -23,8 +23,9 @@ module.exports = {
       options: {
         apiURL: process.env.API_URL,
         contentTypes: [
-          'article',
-          'category',
+          'Article',
+          'Category',
+          'Email'
         ],
         queryLimit: 1000,
       },

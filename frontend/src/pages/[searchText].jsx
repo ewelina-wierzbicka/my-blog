@@ -8,7 +8,7 @@ import Categories from '../components/categories';
 import Search from '../components/search';
 import Content from '../components/content';
 import ArticleList from '../components/articleList';
-import { client } from '../../gatsby-browser';
+import client from '../../graphQlClient';
 
 const SEARCH_QUERY = `query($search: String) {
   title: articles(where: {title_contains: $search}) {
