@@ -60,7 +60,7 @@ const ErrorWrapper = styled.div`
 `;
 
 const SearchText = ({ location }) => {
-  const { searchText } = location.state;
+  const searchText = location?.state?.searchText;
   const { loading, error, data } = useQuery(SEARCH_QUERY, {
     client,
     variables: { search: searchText },
