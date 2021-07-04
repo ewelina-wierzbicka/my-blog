@@ -48,7 +48,7 @@ const IndexPage = () => {
     .map(el => el.node)
     .map(article => ({
       ...article,
-      imagePath: `${process.env.GATSBY_HOST_URL}/${article.image.publicURL}`,
+      imagePath: `${article.image.publicURL}`,
     }));
   return (
     <Layout>
