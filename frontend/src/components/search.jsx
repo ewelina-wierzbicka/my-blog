@@ -15,7 +15,7 @@ const Input = styled.input`
   margin: 0 auto;
   display: block;
   padding: 1vw;
-  padding-left: 3vw;
+  padding-left: calc(8px + 3vw);
   background-image: url(${searchIcon});
   background-size: 8%;
   background-repeat: no-repeat;

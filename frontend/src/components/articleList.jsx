@@ -7,7 +7,7 @@ const ArticleImageList = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   column-gap: 5vw;
   row-gap: 5vw;
   margin-left: 1vw;
@@ -36,7 +36,10 @@ const ArticleImage = styled(Link)`
   &:first-child {
     width: 40vw;
     height: 40vw;
-    margin: 0 10vw;
+    margin: 0 38vw 0 10vw;
+    @media (max-width: 700px) {
+      margin: 0 10vw;
+    }
     @media (max-width: 600px) {
       width: 60vw;
       height: 60vw;

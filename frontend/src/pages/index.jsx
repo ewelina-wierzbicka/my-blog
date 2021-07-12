@@ -36,7 +36,7 @@ const MainContent = styled(Content)`
   position: relative;
   justify-content: space-between;
   align-items: flex-start;
-  margin-top: 2vw;
+  margin-top: 4vw;
   @media (max-width: 627px) {
     justify-content: center;
   }
