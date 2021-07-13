@@ -75,7 +75,7 @@ const SearchText = ({ location }) => {
       .map(article => ({
         ...article,
         articlePath: `/${slugify(article.title).replace("-h-", "/h-")}`,
-        imagePath: `${process.env.API_URL}${article.image.url}`,
+        imagePath: `${article.image.url}`,
       }));
   };
   return (
