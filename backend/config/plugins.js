@@ -11,6 +11,7 @@ module.exports = ({ env }) => ({
         requireTLS: false,
         connectionTimeout: 1,
       },
+    },
       upload: {
         provider: 'cloudinary',
         providerOptions: {
@@ -23,5 +24,4 @@ module.exports = ({ env }) => ({
           delete: {},
         },
       },
-    },
   });

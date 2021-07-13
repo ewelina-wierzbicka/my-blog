@@ -53,7 +53,7 @@ const Category = (props) => {
     .map(el => el.node)
     .map(article => ({
       ...article,
-      imagePath:  `${article.image.publicURL}`,
+      imagePath: `${article.image.publicURL}`,
     }));
   return (
     <Layout>
