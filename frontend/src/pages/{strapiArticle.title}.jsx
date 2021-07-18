@@ -58,7 +58,7 @@ const Article = (props) => {
           <Title>{data.strapiArticle.title}</Title>
           <Text
             source={data.strapiArticle.text}
-            transformImageUri={(uri) => (uri.startsWith('http') ? uri : `${process.env.API_URL}/${uri}`)}
+            transformImageUri={(uri) => (uri.startsWith('http') ? uri : `${process.env.GATSBY_API_URL}/${uri}`)}
           />
         </ArticleContent>
       </MainContent>

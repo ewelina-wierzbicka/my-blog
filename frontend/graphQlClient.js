@@ -2,7 +2,7 @@ import { GraphQLClient } from "graphql-hooks"
 
 
 const client = new GraphQLClient({
-    url: `${process.env.API_URL}/graphql`,
+    url: `${process.env.GATSBY_API_URL}/graphql`,
   });
 
   export default client;
