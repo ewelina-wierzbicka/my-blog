@@ -14,6 +14,7 @@ const SEARCH_QUERY = `query($search: String) {
   title: articles(where: {title_contains: $search}) {
     id
     title
+    date
     image {
       url
     }
@@ -21,6 +22,7 @@ const SEARCH_QUERY = `query($search: String) {
   text: articles(where: {text_contains: $search}) {
     id
     title
+    date
     image {
       url
     }
@@ -78,6 +80,7 @@ const SearchText = ({ location }) => {
         imagePath: `${article.image.url}`,
       }));
   };
+  const sortedArticles = articles.sort((a, b) => new Date(b.date) - new Date(a.date));
   return (
     <Layout>
       <Menu>
@@ -90,7 +93,7 @@ const SearchText = ({ location }) => {
             <CircularProgress />
           </LoadingWrapper>
         )}
-        {data && <ArticleList articles={articles} />}
+        {data && <ArticleList articles={sortedArticles} />}
         {error && (
           <ErrorWrapper>
             <div>Wystąpił błąd</div>

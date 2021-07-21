@@ -19,6 +19,7 @@ export const query = graphql`
         node {
           id
           title
+          date
           image {
             publicURL
           }
@@ -55,6 +56,9 @@ const Category = (props) => {
       ...article,
       imagePath: `${article.image.publicURL}`,
     }));
+
+  const sortedArticles = articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+
   return (
     <Layout>
       <Menu>
@@ -62,7 +66,7 @@ const Category = (props) => {
         <Search />
       </Menu>
       <MainContent>
-        <ArticleList articles={articles} />
+        <ArticleList articles={sortedArticles} />
       </MainContent>
     </Layout>
   );

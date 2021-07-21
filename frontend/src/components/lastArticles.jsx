@@ -9,6 +9,7 @@ const articlesQuery = graphql`
         node {
           id
           title
+          date
           articlePath: gatsbyPath(filePath: "/{strapiArticle.title}")
         }
       }
@@ -57,8 +58,11 @@ const ListTitle = styled.p`
 
 const ArticleTitleList = styled.ul`
   line-height: 1.5;
-  width: 22vw;
+  width: 28vw;
   padding-left: 5vw;
+  @media (max-width: 960px) {
+    line-height: 1.2
+  }
 `;
 
 const ArticleTitle = styled.li`
@@ -73,11 +77,14 @@ const ArticleLink = styled(Link)`
 
 const LastArticles = ({ className }) => {
   const data = useStaticQuery(articlesQuery);
+  const lastArticles = data.allStrapiArticle.edges.slice(0,12);
+  const sortedLastArticles = lastArticles.sort((a, b) => new Date(b.node.date) - new Date(a.node.date));
+
   return (
     <div className={className}>
       <ListTitle>Najnowsze artykuły</ListTitle>
       <ArticleTitleList>
-        {data.allStrapiArticle.edges.map((el) => (
+        {sortedLastArticles.map((el) => (
           <ArticleTitle key={el.node.id}>
             <ArticleLink to={el.node.articlePath}>{el.node.title}</ArticleLink>
           </ArticleTitle>

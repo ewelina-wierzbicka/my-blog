@@ -14,6 +14,7 @@ const articlesQuery = graphql`
         node {
           id
           title
+          date
           image {
             publicURL
           }
@@ -50,6 +51,8 @@ const IndexPage = () => {
       ...article,
       imagePath: `${article.image.publicURL}`,
     }));
+    const sortedArticles = articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+
   return (
     <Layout>
       <Menu>
@@ -57,7 +60,7 @@ const IndexPage = () => {
         <Search />
       </Menu>
       <MainContent>
-        <ArticleList articles={articles} />
+        <ArticleList articles={sortedArticles} />
       </MainContent>
     </Layout>
   );

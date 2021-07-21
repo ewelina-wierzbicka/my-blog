@@ -6,7 +6,7 @@ const HiddenLastArticles = styled(LastArticles)`
   position: absolute;
   top: 0;
   right: 0;
-  width: 30%;
+  width: 35%;
   @media (max-width: 700px) {
     display: none;
   }
