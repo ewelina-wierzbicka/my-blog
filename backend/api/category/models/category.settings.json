@@ -14,10 +14,6 @@
     "name": {
       "type": "string",
       "required": true
-    },
-    "pathName": {
-      "type": "string",
-      "required": true
     }
   }
 }

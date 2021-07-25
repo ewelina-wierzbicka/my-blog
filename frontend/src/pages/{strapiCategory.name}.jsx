@@ -13,7 +13,7 @@ export const query = graphql`
       name
     }
     allStrapiArticle(
-      filter: { categories: { elemMatch: { pathName: { eq: $name } } } }
+      filter: { categories: { elemMatch: { name: { eq: $name } } } }
     ) {
       edges {
         node {

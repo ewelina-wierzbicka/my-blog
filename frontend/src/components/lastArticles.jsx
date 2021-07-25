@@ -77,9 +77,8 @@ const ArticleLink = styled(Link)`
 
 const LastArticles = ({ className }) => {
   const data = useStaticQuery(articlesQuery);
-  const lastArticles = data.allStrapiArticle.edges.slice(0,12);
-  const sortedLastArticles = lastArticles.sort((a, b) => new Date(b.node.date) - new Date(a.node.date));
-
+  const articles = data.allStrapiArticle.edges;
+  const sortedLastArticles = articles.sort((a, b) => new Date(b.node.date) - new Date(a.node.date)).slice(0,12);
   return (
     <div className={className}>
       <ListTitle>Najnowsze artykuły</ListTitle>
