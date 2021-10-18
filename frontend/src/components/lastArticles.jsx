@@ -59,7 +59,7 @@ const ListTitle = styled.p`
 const ArticleTitleList = styled.ul`
   line-height: 1.5;
   width: 28vw;
-  padding-left: 5vw;
+  padding-left: 8vw;
   @media (max-width: 960px) {
     line-height: 1.2
   }

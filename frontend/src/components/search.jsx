@@ -4,10 +4,6 @@ import { navigate } from 'gatsby';
 import slugify from '@sindresorhus/slugify';
 import searchIcon from '../images/magnifyingGlass.png';
 
-const InputContainer = styled.div`
-  width: 30%;
-`;
-
 const Input = styled.input`
   width: calc(50px + 18vw);
   height: calc(15px + 2vw);
@@ -44,15 +40,13 @@ const Search = () => {
   };
 
   return (
-    <>
-      <InputContainer>
+      <div>
         <Input
           onChange={handleChange}
           type="text"
           onKeyDown={handleSubmit}
         />
-      </InputContainer>
-    </>
+      </div>
   );
 };
 

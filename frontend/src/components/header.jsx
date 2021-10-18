@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 import contact from '../images/contact.png';
 import homepage from '../images/homepage.png';
 import instagram from '../images/instagram.png';
-import headerPhoto from '../images/steering-wheel.jpg';
+import headerPhoto from '../images/header.jpg';
 import logo from '../images/logo.png';
 
 const ContentWrapper = styled.div`
@@ -15,11 +15,12 @@ const ContentWrapper = styled.div`
 `;
 
 const HeaderPhoto = styled.div`
-  width: 75%;
+  width: 77%;
   height: 22vw;
   position: relative;
   background-image: url(${headerPhoto});
   background-size: cover;
+  background-position: bottom left;
   &:before {
     content: "";
     position: absolute;
@@ -34,14 +35,15 @@ const HeaderPhoto = styled.div`
 
 const IconsWrapper = styled.div`
   margin-left: 30px;
-  height: calc(3.5vw + 5px);
+  height: calc(3.5vw + 10px);
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   Link,
   a {
-    height: calc(50% + 3px);
+    height: calc(45% + 3px);
     margin-right: 15px;
+    display: flex;
   }
 `;
 
@@ -51,8 +53,8 @@ const Image = styled.img`
 
 const TitleWrapper = styled.div`
   position: absolute;
-  top: 4.2vw;
-  right: 6vw;
+  top: calc(3.25vw + 13px);
+  right: 4vw;
   width: 65vw;
   height: 14.4vw;
   @media (min-width: 1920px) {

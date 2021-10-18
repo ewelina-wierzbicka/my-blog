@@ -19,7 +19,7 @@ position: relative;
 `;
 
 const Container = styled.div`
-padding-bottom: 14vw;
+padding-bottom: 20vw;
   margin: 0 4%;
   @media (min-width: 1366px) {
     margin: 0 8%;

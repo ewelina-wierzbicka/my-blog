@@ -64,7 +64,7 @@ const ArticleTitle = styled.div`
   width: 100%;
   height: 100%;
   color: #ffffff;
-  font-size: 2.8vw;
+  font-size: 3.2vw;
   font-weight: bold;
   text-transform: uppercase;
   display: flex;

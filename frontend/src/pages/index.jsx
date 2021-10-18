@@ -40,6 +40,7 @@ const MainContent = styled(Content)`
   margin-top: 4vw;
   @media (max-width: 627px) {
     justify-content: center;
+    margin-top: 6vw;
   }
 `;
 

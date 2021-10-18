@@ -42,9 +42,10 @@ const MainContent = styled(Content)`
   justify-content: space-between;
   align-items: flex-start;
   position: relative;
-  margin-top: 2vw;
+  margin-top: 4vw;
   @media (max-width: 627px) {
     justify-content: center;
+    margin-top: 6vw;
   }
 `;
 

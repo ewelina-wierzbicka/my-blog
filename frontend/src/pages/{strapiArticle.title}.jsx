@@ -17,13 +17,17 @@ export const articlesQuery = graphql`
 const Title = styled.h1`
   text-transform: uppercase;
   text-align: center;
-  width: 100%;
+  width: 95%;
   position: relative;
-  font-size: 3vw;
+  font-size: calc(1.5vw + 10px);
+  margin: 0 0 4vw;
+  @media (max-width: 700px) {
+    margin: 5vw;
+  }
 `;
 
 const Text = styled(ReactMarkdown)`
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
   line-height: 1.5;
 `;
@@ -33,8 +37,8 @@ const MainContent = styled(Content)`
   justify-content: space-between;
   align-items: flex-start;
   position: relative;
-  margin-top: 2vw;
-  @media (max-width: 627px) {
+  margin-top: 4vw;
+  @media (max-width: 700px) {
     justify-content: center;
   }
 `;
@@ -44,7 +48,7 @@ const ArticleContent = styled.div`
   & img {
     max-width: 100%;
   }
-  @media (max-width: 627px) {
+  @media (max-width: 700px) {
     width: 100%;
   }
 `;

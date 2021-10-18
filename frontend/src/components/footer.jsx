@@ -72,6 +72,7 @@ const IconsWrapper = styled.div`
   a {
     height: calc(40% + 3px);
     margin-right: 20px;
+    display: flex;
   }
 `;
 
