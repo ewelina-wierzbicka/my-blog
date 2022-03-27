@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 import Layout from '../components/layout';
 import ArticleList from '../components/articleList';
-import Categories from '../components/categories';
+import Instagram from '../components/instagram';
 import Search from '../components/search';
 import Content from '../components/content';
 
@@ -30,6 +30,7 @@ const Menu = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  margin-top: 10px;
 `;
 
 const MainContent = styled(Content)`
@@ -57,7 +58,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <Menu>
-        <Categories />
+        <Instagram />
         <Search />
       </Menu>
       <MainContent>

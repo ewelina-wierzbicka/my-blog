@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 import contact from '../images/contact.png';
 import homepage from '../images/homepage.png';
 import instagram from '../images/instagram.png';
-import headerPhoto from '../images/header.jpg';
+import headerPhoto from '../images/header.png';
 import logo from '../images/logo.png';
 
 const ContentWrapper = styled.div`
@@ -20,7 +20,6 @@ const HeaderPhoto = styled.div`
   position: relative;
   background-image: url(${headerPhoto});
   background-size: cover;
-  background-position: bottom left;
   &:before {
     content: "";
     position: absolute;

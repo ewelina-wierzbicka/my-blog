@@ -4,7 +4,7 @@ import { useQuery } from 'graphql-hooks';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import slugify from '@sindresorhus/slugify';
 import Layout from '../components/layout';
-import Categories from '../components/categories';
+import Instagram from '../components/instagram';
 import Search from '../components/search';
 import Content from '../components/content';
 import ArticleList from '../components/articleList';
@@ -85,7 +85,7 @@ const SearchText = ({ location }) => {
   return (
     <Layout>
       <Menu>
-        <Categories />
+        <Instagram />
         <Search />
       </Menu>
       <MainContent>

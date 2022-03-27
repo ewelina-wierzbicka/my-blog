@@ -32,9 +32,6 @@
     },
     "date": {
       "type": "date"
-    },
-    "categories": {
-      "collection": "category"
     }
   }
 }
