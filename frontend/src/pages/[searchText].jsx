@@ -14,6 +14,7 @@ const SEARCH_QUERY = `query($search: String) {
   title: articles(where: {title_contains: $search}) {
     id
     title
+    text
     date
     image {
       url
@@ -22,6 +23,7 @@ const SEARCH_QUERY = `query($search: String) {
   text: articles(where: {text_contains: $search}) {
     id
     title
+    text
     date
     image {
       url
@@ -35,6 +37,7 @@ const Menu = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  margin-top: 10px;
 `;
 
 const MainContent = styled(Content)`

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg128"
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   sodipodi:docname="arrowRight.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <metadata
+     id="metadata134">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs132" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1294"
+     inkscape:window-height="704"
+     id="namedview130"
+     showgrid="false"
+     inkscape:zoom="1.84"
+     inkscape:cx="286.14131"
+     inkscape:cy="256"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg128" />
+  <path
+     style="fill:#ffffff;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 62.554164,275.12307 322.644076,0.54238 -72.74577,66.91525 c -11.85863,15.34019 -7.2564,42.90647 23.79661,27.25424 L 434.0118,276.6146 c 12.34725,-16.00073 11.38586,-25.25693 0.91525,-37.05085 l -101.9322,-93.38983 c -32.11193,-17.94351 -36.21641,12.71914 -21.79883,26.50626 l 74.54238,67.45763 -322.09949,0.002 c -26.026874,0.40182 -37.556598,27.91945 -1.084746,34.98305 z"
+     id="path138"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cccccccscccc"
+     inkscape:export-filename="/home/ewelina/arrowRightm.svg.png"
+     inkscape:export-xdpi="23.226982"
+     inkscape:export-ydpi="23.226982" />
+</svg>

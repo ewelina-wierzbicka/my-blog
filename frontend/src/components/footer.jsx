@@ -11,7 +11,7 @@ position: absolute;
 bottom: 0;
   width: 100vw;
   height: 10vw;
-  background-color: #3d4569;
+  background-color: #212036;
   margin-top: 6vw;
   padding: 0 4%;
   display: flex;

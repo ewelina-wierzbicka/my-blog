@@ -16,6 +16,8 @@ const Input = styled.input`
   background-size: 8%;
   background-repeat: no-repeat;
   background-position: 5% 50%;
+  border-style: solid;
+  border-color: #000000;
   &:focus {
     outline: none;
   }

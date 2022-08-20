@@ -13,6 +13,7 @@ const articlesQuery = graphql`
       edges {
         node {
           id
+          text
           title
           date
           image {

@@ -27,7 +27,7 @@ const HeaderPhoto = styled.div`
     left: 75%;
     width: 60%;
     height: 21.5vw;
-    background-color: #3d4569;
+    background-color: #212036;
     z-index: -1;
   }
 `;
@@ -72,7 +72,7 @@ const TitleFirstWord = styled.h1`
   position: absolute;
   top: 43%;
   right: 0;
-  background-color: rgba(106, 111, 125, 0.8);
+  background-color: rgba(160, 165, 178, 0.8);
   font-size: 3.8vw;
   letter-spacing: calc(0.5vw + 4px);
   color: white;
@@ -82,7 +82,7 @@ const TitleNextWords = styled.h1`
   position: absolute;
   right: 0;
   top: 93%;
-  background-color: rgba(106, 111, 125, 0.8);
+  background-color: rgba(160, 165, 178, 0.8);
   font-size: 2.7vw;
   letter-spacing: calc(0.5vw + 4px);
   color: white;
