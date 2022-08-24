@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import contact from '../images/contact.png';
-import homepage from '../images/homepage.png';
-import instagram from '../images/instagram.png';
 import headerPhoto from '../images/header.png';
 import logo from '../images/logo.png';
+import home from '../images/svg/home.svg';
+import contact from '../images/svg/contact.svg';
+import instagram from '../images/svg/instagram.svg';
 
 const ContentWrapper = styled.div`
   position: relative;
@@ -35,19 +35,16 @@ const HeaderPhoto = styled.div`
 const IconsWrapper = styled.div`
   margin-left: 30px;
   height: calc(3.5vw + 10px);
+  width: calc(6vw + 50px);
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
+  align-items: center;
+  justify-content: space-between;
   Link,
   a {
-    height: calc(45% + 3px);
-    margin-right: 15px;
+    height: calc(40% + 5px);
     display: flex;
   }
-`;
-
-const Image = styled.img`
-  height: 100%;
 `;
 
 const TitleWrapper = styled.div`
@@ -88,17 +85,29 @@ const TitleNextWords = styled.h1`
   color: white;
 `;
 
+const HomeIcon = styled(home)`
+height: 100%;
+`
+
+const ContactIcon = styled(contact)`
+height: 100%;
+`
+
+const InstagramIcon = styled(instagram)`
+height: 100%;
+`
+
 const Header = () => (
   <ContentWrapper>
     <IconsWrapper>
       <Link to="/">
-        <Image src={homepage} alt="" />
+       <HomeIcon />
       </Link>
       <Link to="/contact">
-        <Image src={contact} alt="" />
+       <ContactIcon />
       </Link>
       <a href="https://www.instagram.com/instruktornaukijazdy/">
-        <Image src={instagram} alt="" />
+       <InstagramIcon/>
       </a>
     </IconsWrapper>
     <HeaderPhoto />

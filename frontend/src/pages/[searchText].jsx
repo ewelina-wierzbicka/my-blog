@@ -1,14 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useQuery } from 'graphql-hooks';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import slugify from '@sindresorhus/slugify';
-import Layout from '../components/layout';
-import Instagram from '../components/instagram';
-import Search from '../components/search';
-import Content from '../components/content';
-import ArticleList from '../components/articleList';
-import client from '../../graphQlClient';
+import React from "react"
+import styled from "styled-components"
+import { useQuery } from "graphql-hooks"
+import CircularProgress from "@material-ui/core/CircularProgress"
+import slugify from "@sindresorhus/slugify"
+import Layout from "../components/layout"
+import Instagram from "../components/instagram"
+import Search from "../components/search"
+import Content from "../components/content"
+import ArticleList from "../components/articleList"
+import client from "../../graphQlClient"
 
 const SEARCH_QUERY = `query($search: String) {
   title: articles(where: {title_contains: $search}) {
@@ -30,7 +30,7 @@ const SEARCH_QUERY = `query($search: String) {
     }
   }
 }
-`;
+`
 
 const Menu = styled.div`
   display: flex;
@@ -38,7 +38,7 @@ const Menu = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
-`;
+`
 
 const MainContent = styled(Content)`
   display: flex;
@@ -50,12 +50,12 @@ const MainContent = styled(Content)`
     justify-content: center;
     margin-top: 6vw;
   }
-`;
+`
 
 const LoadingWrapper = styled.div`
   width: 70%;
   text-align: center;
-`;
+`
 
 const ErrorWrapper = styled.div`
   width: 70%;
@@ -63,16 +63,20 @@ const ErrorWrapper = styled.div`
   font-size: 2.2vw;
   font-weight: bold;
   text-transform: uppercase;
-`;
+`
+
+const NoResultsText = styled.p`
+  min-height: 300px;
+`
 
 const SearchText = ({ location }) => {
-  const searchText = location?.state?.searchText;
+  const searchText = location?.state?.searchText
   const { loading, error, data } = useQuery(SEARCH_QUERY, {
     client,
     variables: { search: searchText },
-  });
+  })
 
-  let articles = [];
+  let articles = []
   if (data) {
     articles = [...data.title, ...data.text]
       .filter(
@@ -82,9 +86,11 @@ const SearchText = ({ location }) => {
         ...article,
         articlePath: `/${slugify(article.title).replace("-h-", "/h-")}`,
         imagePath: `${article.image.url}`,
-      }));
-  };
-  const sortedArticles = articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+      }))
+  }
+  const sortedArticles = articles.sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  )
   return (
     <Layout>
       <Menu>
@@ -97,7 +103,14 @@ const SearchText = ({ location }) => {
             <CircularProgress />
           </LoadingWrapper>
         )}
-        {data && <ArticleList articles={sortedArticles} />}
+        {!loading &&
+          (sortedArticles.length > 0 ? (
+            <ArticleList articles={sortedArticles} />
+          ) : (
+            <NoResultsText>
+              Brak wyników wyszukiwania dla: {searchText}
+            </NoResultsText>
+          ))}
         {error && (
           <ErrorWrapper>
             <div>Wystąpił błąd</div>
@@ -106,6 +119,6 @@ const SearchText = ({ location }) => {
       </MainContent>
     </Layout>
   )
-};
+}
 
-export default SearchText;
+export default SearchText

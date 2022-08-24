@@ -1,30 +1,31 @@
 import React from "react"
 import styled from "styled-components"
-import instagram from "../images/instagram.png"
+import instagram from "../images/svg/instagram.svg"
 
 const Wrapper = styled.div`
   height: 20px;
   display: flex;
-  @media(max-width: 600px) {
+  @media (max-width: 600px) {
     height: 15px;
-font-size: 12px;
+    font-size: 12px;
   }
   & a {
     text-decoration: none;
     color: #000000;
     display: flex;
     align-items: center;
-    & img {
-      height: 100%;
-      margin-right: 5px;
-    }
   }
+`
+
+const InstagramIcon = styled(instagram)`
+  height: 100%;
+  margin-right: 5px;
 `
 
 const Instagram = () => (
   <Wrapper>
     <a href="https://www.instagram.com/instruktornaukijazdy/">
-      <img src={instagram} alt="instagram icon" />
+      <InstagramIcon />
       <span>instruktornaukijazdy</span>
     </a>
   </Wrapper>

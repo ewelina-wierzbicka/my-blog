@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import logo from '../images/logo.png';
-import contact from '../images/contactW.png';
-import homepage from '../images/homepageW.png';
-import instagram from '../images/instagramW.png';
+import home from '../images/svg/homeWhite.svg';
+import contact from '../images/svg/contactWhite.svg';
+import instagram from '../images/svg/instagramWhite.svg';
 
 const Container = styled.div`
-position: absolute;
-bottom: 0;
-  width: 100vw;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   height: 10vw;
   background-color: #212036;
   margin-top: 6vw;
@@ -65,20 +65,30 @@ const TitleNextWords = styled.h1`
 
 const IconsWrapper = styled.div`
   height: calc(5vw + 5px);
+  width: calc(8vw + 50px);
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
+  align-items: center;
+  justify-content: space-between;
   Link,
   a {
-    height: calc(40% + 3px);
-    margin-right: 20px;
+    height: calc(40% + 5px);
     display: flex;
   }
 `;
 
-const Image = styled.img`
-  height: 100%;
-`;
+const HomeIcon = styled(home)`
+color: white;
+height: 100%;
+`
+
+const ContactIcon = styled(contact)`
+height: 100%;
+`
+
+const InstagramIcon = styled(instagram)`
+height: 100%;
+`
 
 const Footer = () => (
   <Container>
@@ -91,13 +101,13 @@ const Footer = () => (
     </TitleWrapper>
     <IconsWrapper>
       <Link to="/">
-        <Image src={homepage} alt="" />
+       <HomeIcon />
       </Link>
       <Link to="/contact">
-        <Image src={contact} alt="" />
+       <ContactIcon />
       </Link>
       <a href="https://www.instagram.com/instruktornaukijazdy/">
-        <Image src={instagram} alt="" />
+       <InstagramIcon/>
       </a>
     </IconsWrapper>
   </Container>

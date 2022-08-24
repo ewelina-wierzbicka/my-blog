@@ -10,7 +10,7 @@ const ArticleImageList = styled.div`
   justify-content: space-evenly;
   column-gap: 5vw;
   row-gap: 5vw;
-  min-height: 200px;
+  min-height: 300px;
   @media (max-width: 715px) {
     row-gap: 9vw;
   }
@@ -81,7 +81,7 @@ const Front = styled(Link)`
   justify-content: center;
   padding: 0 8px;
   text-decoration: none;
-  p {
+  div {
   @media (min-width: 600px) {
     display: none
   }
@@ -128,7 +128,7 @@ const Text = styled.div`
   }
 `
 
-const More = styled.p`
+const More = styled.div`
   position: absolute;
   width: calc(40px + 10vw);
   height: calc(2vw + 10px);
@@ -145,6 +145,7 @@ const More = styled.p`
   align-items: center;
   text-decoration: none;
   text-shadow: none;
+  margin: 10px 0;
   @media (min-width: 715px) and (max-width: 960px) {
     font-size: calc(0.5vw + 6px);
   }
@@ -163,11 +164,10 @@ height: calc(2vw + 10px);
 const ArticleList = ({ articles }) => (
   <ArticleImageList>
     {articles.map(el => (
-      <Card>
+      <Card key={el.id}>
         <CardInner>
           <Front
             to={el.articlePath}
-            key={el.id}
             style={{
               backgroundImage: `url(${el.imagePath})`,
             }}
