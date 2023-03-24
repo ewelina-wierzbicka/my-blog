@@ -28,7 +28,7 @@ const ContactForm = styled.form`
   & * {
     display: block;
     width: 100%;
-    font-size: calc(1vw + 5px);
+    font-size: calc(0.5vw + 10px);
   }
   & label {
     margin-top: 20px;
@@ -128,7 +128,7 @@ const Contact = () => {
         {formik.errors.message && formik.touched.message ? (
           <ErrorMessage>{formik.errors.message}</ErrorMessage>
         ) : null}
-        <Button type="submit">Wyślij</Button>
+        <Button type="submit">WYŚLIJ</Button>
       </ContactForm>
       <ToastContainer />
     </Layout>

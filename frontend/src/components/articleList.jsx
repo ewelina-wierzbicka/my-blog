@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import ArrowRight from "../images/svg/arrowRight.svg";
+import ArrowRight from "../images/svg/arrowRight.svg"
 
 const ArticleImageList = styled.div`
   width: 100%;
@@ -81,10 +81,10 @@ const Front = styled(Link)`
   justify-content: center;
   padding: 0 8px;
   text-decoration: none;
-  div {
-  @media (min-width: 600px) {
-    display: none
-  }
+  div:nth-child(2) {
+    @media (min-width: 600px) {
+      display: none;
+    }
   }
 `
 
@@ -101,10 +101,10 @@ const Back = styled(Link)`
 
 const Title = styled.div`
   font-weight: bold;
-  font-family: 'Antonio', sans-serif;
+  font-family: "Antonio", sans-serif;
   letter-spacing: 2px;
   text-shadow: 2px 2px #3d4569;
-`;
+`
 
 const Text = styled.div`
   color: white;
@@ -138,7 +138,7 @@ const More = styled.div`
   text-transform: uppercase;
   color: #ffffff;
   text-align: center;
-  line-height: calc(2vw + 10px);;
+  line-height: calc(2vw + 10px);
   background-color: rgba(160, 165, 178, 0.8);
   display: flex;
   justify-content: space-evenly;
@@ -154,35 +154,78 @@ const More = styled.div`
   }
 `
 const Arrow = styled(ArrowRight)`
-width: 2.5vw;
-height: calc(2vw + 10px);
-@media (max-width: 715px) {
-  width: 4vw;
+  width: 2.5vw;
+  height: calc(2vw + 10px);
+  @media (max-width: 715px) {
+    width: 4vw;
+  }
+`
+
+const ButtonContainer = styled.div`
+margin-top: 50px;
+display: flex;
+justify-content: space-between
+`
+
+const Button = styled.button`
+padding: calc(0.5vw + 8px);
+font-size: calc(0.4vw + 8px);
+background-color: #212036;
+color: #ffffff;
+border: none;
+text-transform: uppercase;
+cursor: pointer;
+:hover {
+  background-color: #37364A;
+}
+:disabled {
+  color: rgba(0, 0, 0, 0.26);
+  background-color: rgba(0, 0, 0, 0.12);
 }
 `
 
-const ArticleList = ({ articles }) => (
-  <ArticleImageList>
-    {articles.map(el => (
-      <Card key={el.id}>
-        <CardInner>
-          <Front
-            to={el.articlePath}
-            style={{
-              backgroundImage: `url(${el.imagePath})`,
-            }}
-          >
-            <Title>{el.title}</Title>
-            <More><p>CZYTAJ DALEJ</p><Arrow /></More>
-          </Front>
-          <Back to={el.articlePath} key={el.id}>
-            <Text>{el.text?.slice(0, 130)}...</Text>
-            <More><p>CZYTAJ DALEJ</p><Arrow /></More>
-          </Back>
-        </CardInner>
-      </Card>
-    ))}
-  </ArticleImageList>
+const ArticleList = ({ articles, start, setStart, limit, articlesCount }) => {
+  const handlePrevPage = () => {
+    setStart(start - limit);
+  }
+  const handleNextPage = () => {
+    setStart(start + limit);
+  }
+    return (
+  <>
+    <ArticleImageList>
+      {articles.map(el => (
+        <Card key={el.id}>
+          <CardInner>
+            <Front
+              to={el.articlePath}
+              style={{
+                backgroundImage: `url(${el.imagePath})`,
+              }}
+            >
+              <Title>{el.title}</Title>
+              <More>
+                <p>CZYTAJ DALEJ</p>
+                <Arrow />
+              </More>
+            </Front>
+            <Back to={el.articlePath} key={el.id}>
+              <Text>{el.text?.slice(0, 130)}...</Text>
+              <More>
+                <p>CZYTAJ DALEJ</p>
+                <Arrow />
+              </More>
+            </Back>
+          </CardInner>
+        </Card>
+      ))}
+    </ArticleImageList>
+    <ButtonContainer>
+    <Button type="button" disabled={start < limit} onClick={handlePrevPage}>Poprzednie artykuły</Button>
+    <Button type="button" disabled={!articlesCount || (start + limit) >= articlesCount} onClick={handleNextPage}>Następne artykuły</Button>
+    </ButtonContainer>
+  </>
 )
+}
 
 export default ArticleList

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { useQuery } from "graphql-hooks"
 import CircularProgress from "@material-ui/core/CircularProgress"
@@ -10,8 +10,8 @@ import Content from "../components/content"
 import ArticleList from "../components/articleList"
 import client from "../../graphQlClient"
 
-const SEARCH_QUERY = `query($search: String) {
-  title: articles(where: {title_contains: $search}) {
+const SEARCH_QUERY = `query($search: String, $limit: Int, $start: Int) {
+  articles(where: { _or: [{title_contains: $search}, {text_contains: $search}] }, limit: $limit, start: $start) {
     id
     title
     text
@@ -20,13 +20,9 @@ const SEARCH_QUERY = `query($search: String) {
       url
     }
   }
-  text: articles(where: {text_contains: $search}) {
-    id
-    title
-    text
-    date
-    image {
-      url
+  articlesConnection(where: { _or: [{title_contains: $search}, {text_contains: $search}] }) {
+    aggregate {
+      count
     }
   }
 }
@@ -41,15 +37,11 @@ const Menu = styled.div`
 `
 
 const MainContent = styled(Content)`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  position: relative;
-  margin-top: 4vw;
-  @media (max-width: 627px) {
-    justify-content: center;
-    margin-top: 6vw;
-  }
+position: relative;
+margin-top: 4vw;
+@media (max-width: 627px) {
+  margin-top: 6vw;
+}
 `
 
 const LoadingWrapper = styled.div`
@@ -70,23 +62,23 @@ const NoResultsText = styled.p`
 `
 
 const SearchText = ({ location }) => {
-  const searchText = location?.state?.searchText
+  const limit = 16;
+  const [start, setStart] = useState(0);
+  const searchText = location?.pathname?.replace('/search:', '');
   const { loading, error, data } = useQuery(SEARCH_QUERY, {
     client,
-    variables: { search: searchText },
+    variables: { search: searchText, limit, start },
   })
 
-  let articles = []
+  let articles = [];
+  let articlesCount;
   if (data) {
-    articles = [...data.title, ...data.text]
-      .filter(
-        (el, ind, arr) => arr.findIndex(elem => elem.id === el.id) === ind
-      )
-      .map(article => ({
+    articles = data.articles.map(article => ({
         ...article,
         articlePath: `/${slugify(article.title).replace("-h-", "/h-")}`,
         imagePath: `${article.image.url}`,
       }))
+      articlesCount = data.articlesConnection.aggregate.count;
   }
   const sortedArticles = articles.sort(
     (a, b) => new Date(b.date) - new Date(a.date)
@@ -103,9 +95,9 @@ const SearchText = ({ location }) => {
             <CircularProgress />
           </LoadingWrapper>
         )}
-        {!loading &&
+        {(!loading && !error) &&
           (sortedArticles.length > 0 ? (
-            <ArticleList articles={sortedArticles} />
+            <ArticleList articles={sortedArticles} start={start} setStart={setStart} limit={limit} articlesCount={articlesCount} />
           ) : (
             <NoResultsText>
               Brak wyników wyszukiwania dla: {searchText}
