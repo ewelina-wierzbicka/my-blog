@@ -9,8 +9,8 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
+    "@strapi/logger": "^4.10.6",
     "graphql": "^14.4.1",
     "knex": "<2.4.2",
     "pg": "^8.11.0",
