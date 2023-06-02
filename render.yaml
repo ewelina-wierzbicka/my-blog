@@ -3,8 +3,8 @@ services:
     name: strapi
     env: node
     plan: free
-    buildCommand: cd backend && npm install && npm run build
-    startCommand: cd backend && npm start strapi
+    buildCommand: cd backend && npm install && strapi build
+    startCommand: cd backend && strapi start
     healthCheckPath: /_health
     autoDeploy: false
     envVars:
