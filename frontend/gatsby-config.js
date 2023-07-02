@@ -9,6 +9,7 @@ module.exports = {
     author: "",
   },
   plugins: [
+    "gatsby-plugin-pnpm",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-styled-components",
     {
@@ -38,9 +39,9 @@ module.exports = {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: /svg/
-        }
-      }
+          include: /svg/,
+        },
+      },
     },
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
