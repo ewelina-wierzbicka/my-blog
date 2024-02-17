@@ -1,6 +1,6 @@
-import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
-import styled from 'styled-components';
+import React from "react"
+import { useStaticQuery, graphql, Link } from "gatsby"
+import styled from "styled-components"
 
 const articlesQuery = graphql`
   query {
@@ -15,7 +15,7 @@ const articlesQuery = graphql`
       }
     }
   }
-`;
+`
 
 const ListTitle = styled.p`
   text-transform: uppercase;
@@ -54,43 +54,45 @@ const ListTitle = styled.p`
       right: -1vw;
     }
   }
-`;
+`
 
 const ArticleTitleList = styled.ul`
   line-height: 1.5;
   width: 28vw;
   padding-left: 8vw;
   @media (max-width: 960px) {
-    line-height: 1.2
+    line-height: 1.2;
   }
-`;
+`
 
 const ArticleTitle = styled.li`
   font-size: calc(8px + 0.5vw);
   margin-bottom: 8px;
-`;
+`
 
 const ArticleLink = styled(Link)`
   text-decoration: none;
   color: #000000;
-`;
+`
 
 const LastArticles = ({ className }) => {
-  const data = useStaticQuery(articlesQuery);
-  const articles = data.allStrapiArticle.edges;
-  const sortedLastArticles = articles.sort((a, b) => new Date(b.node.date) - new Date(a.node.date)).slice(0,12);
+  const data = useStaticQuery(articlesQuery)
+  const articles = data.allStrapiArticle.edges
+  const sortedLastArticles = articles
+    .sort((a, b) => new Date(b.node.date) - new Date(a.node.date))
+    .slice(0, 12)
   return (
     <div className={className}>
       <ListTitle>Najnowsze artykuły</ListTitle>
       <ArticleTitleList>
-        {sortedLastArticles.map((el) => (
+        {sortedLastArticles.map(el => (
           <ArticleTitle key={el.node.id}>
             <ArticleLink to={el.node.articlePath}>{el.node.title}</ArticleLink>
           </ArticleTitle>
         ))}
       </ArticleTitleList>
     </div>
-  );
-};
+  )
+}
 
-export default LastArticles;
+export default LastArticles

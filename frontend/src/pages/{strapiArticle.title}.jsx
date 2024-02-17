@@ -1,18 +1,18 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import styled from 'styled-components';
-import ReactMarkdown from 'react-markdown';
-import Layout from '../components/layout';
-import Content from '../components/content';
+import React from "react"
+import { graphql } from "gatsby"
+import styled from "styled-components"
+import ReactMarkdown from "react-markdown"
+import Layout from "../components/layout"
+import Content from "../components/content"
 
 export const articlesQuery = graphql`
-  query($id: String){
-    strapiArticle(id: {eq: $id}) {
+  query($id: String) {
+    strapiArticle(id: { eq: $id }) {
       title
       text
     }
   }
-`;
+`
 
 const Title = styled.h1`
   text-transform: uppercase;
@@ -24,13 +24,13 @@ const Title = styled.h1`
   @media (max-width: 700px) {
     margin: 5vw;
   }
-`;
+`
 
 const Text = styled(ReactMarkdown)`
   width: 95%;
   margin: 0 auto;
   line-height: 1.5;
-`;
+`
 
 const MainContent = styled(Content)`
   display: flex;
@@ -41,7 +41,7 @@ const MainContent = styled(Content)`
   @media (max-width: 700px) {
     justify-content: center;
   }
-`;
+`
 
 const ArticleContent = styled.div`
   width: 70%;
@@ -51,10 +51,10 @@ const ArticleContent = styled.div`
   @media (max-width: 700px) {
     width: 100%;
   }
-`;
+`
 
-const Article = (props) => {
-  const { data } = props;
+const Article = props => {
+  const { data } = props
   return (
     <Layout>
       <MainContent>
@@ -62,12 +62,16 @@ const Article = (props) => {
           <Title>{data.strapiArticle.title}</Title>
           <Text
             source={data.strapiArticle.text}
-            transformImageUri={(uri) => (uri.startsWith('http') ? uri : `${process.env.GATSBY_API_URL}/${uri}`)}
+            transformImageUri={uri =>
+              uri.startsWith("http")
+                ? uri
+                : `${process.env.GATSBY_API_URL}/${uri}`
+            }
           />
         </ArticleContent>
       </MainContent>
     </Layout>
-  );
-};
+  )
+}
 
-export default Article;
+export default Article

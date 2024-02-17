@@ -37,11 +37,11 @@ const Menu = styled.div`
 `
 
 const MainContent = styled(Content)`
-position: relative;
-margin-top: 4vw;
-@media (max-width: 627px) {
-  margin-top: 6vw;
-}
+  position: relative;
+  margin-top: 4vw;
+  @media (max-width: 627px) {
+    margin-top: 6vw;
+  }
 `
 
 const LoadingWrapper = styled.div`
@@ -62,23 +62,23 @@ const NoResultsText = styled.p`
 `
 
 const SearchText = ({ location }) => {
-  const limit = 16;
-  const [start, setStart] = useState(0);
-  const searchText = location?.pathname?.replace('/search:', '');
+  const limit = 16
+  const [start, setStart] = useState(0)
+  const searchText = location?.pathname?.replace("/search:", "")
   const { loading, error, data } = useQuery(SEARCH_QUERY, {
     client,
     variables: { search: searchText, limit, start },
   })
 
-  let articles = [];
-  let articlesCount;
+  let articles = []
+  let articlesCount
   if (data) {
     articles = data.articles.map(article => ({
-        ...article,
-        articlePath: `/${slugify(article.title).replace("-h-", "/h-")}`,
-        imagePath: `${article.image.url}`,
-      }))
-      articlesCount = data.articlesConnection.aggregate.count;
+      ...article,
+      articlePath: `/${slugify(article.title).replace("-h-", "/h-")}`,
+      imagePath: `${article.image.url}`,
+    }))
+    articlesCount = data.articlesConnection.aggregate.count
   }
   const sortedArticles = articles.sort(
     (a, b) => new Date(b.date) - new Date(a.date)
@@ -95,9 +95,16 @@ const SearchText = ({ location }) => {
             <CircularProgress />
           </LoadingWrapper>
         )}
-        {(!loading && !error) &&
+        {!loading &&
+          !error &&
           (sortedArticles.length > 0 ? (
-            <ArticleList articles={sortedArticles} start={start} setStart={setStart} limit={limit} articlesCount={articlesCount} />
+            <ArticleList
+              articles={sortedArticles}
+              start={start}
+              setStart={setStart}
+              limit={limit}
+              articlesCount={articlesCount}
+            />
           ) : (
             <NoResultsText>
               Brak wyników wyszukiwania dla: {searchText}

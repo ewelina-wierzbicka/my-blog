@@ -162,70 +162,78 @@ const Arrow = styled(ArrowRight)`
 `
 
 const ButtonContainer = styled.div`
-margin-top: 50px;
-display: flex;
-justify-content: space-between
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
 `
 
 const Button = styled.button`
-padding: calc(0.5vw + 8px);
-font-size: calc(0.4vw + 8px);
-background-color: #212036;
-color: #ffffff;
-border: none;
-text-transform: uppercase;
-cursor: pointer;
-:hover {
-  background-color: #37364A;
-}
-:disabled {
-  color: rgba(0, 0, 0, 0.26);
-  background-color: rgba(0, 0, 0, 0.12);
-}
+  padding: calc(0.5vw + 8px);
+  font-size: calc(0.4vw + 8px);
+  background-color: #212036;
+  color: #ffffff;
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  :hover {
+    background-color: #37364a;
+  }
+  :disabled {
+    color: rgba(0, 0, 0, 0.26);
+    background-color: rgba(0, 0, 0, 0.12);
+  }
 `
 
 const ArticleList = ({ articles, start, setStart, limit, articlesCount }) => {
   const handlePrevPage = () => {
-    setStart(start - limit);
+    setStart(start - limit)
   }
   const handleNextPage = () => {
-    setStart(start + limit);
+    setStart(start + limit)
   }
-    return (
-  <>
-    <ArticleImageList>
-      {articles.map(el => (
-        <Card key={el.id}>
-          <CardInner>
-            <Front
-              to={el.articlePath}
-              style={{
-                backgroundImage: `url(${el.imagePath})`,
-              }}
-            >
-              <Title>{el.title}</Title>
-              <More>
-                <p>CZYTAJ DALEJ</p>
-                <Arrow />
-              </More>
-            </Front>
-            <Back to={el.articlePath} key={el.id}>
-              <Text>{el.text?.slice(0, 130)}...</Text>
-              <More>
-                <p>CZYTAJ DALEJ</p>
-                <Arrow />
-              </More>
-            </Back>
-          </CardInner>
-        </Card>
-      ))}
-    </ArticleImageList>
-    <ButtonContainer>
-    <Button type="button" disabled={start < limit} onClick={handlePrevPage}>Poprzednie artykuły</Button>
-    <Button type="button" disabled={!articlesCount || (start + limit) >= articlesCount} onClick={handleNextPage}>Następne artykuły</Button>
-    </ButtonContainer>
-  </>
-)
+  return (
+    <>
+      <ArticleImageList>
+        {articles.map(el => (
+          <Card key={el.id}>
+            <CardInner>
+              <Front
+                to={el.articlePath}
+                style={{
+                  backgroundImage: `url(${el.imagePath})`,
+                }}
+              >
+                <Title>{el.title}</Title>
+                <More>
+                  <p>CZYTAJ DALEJ</p>
+                  <Arrow />
+                </More>
+              </Front>
+              <Back to={el.articlePath} key={el.id}>
+                <Text>{el.text?.slice(0, 130)}...</Text>
+                <More>
+                  <p>CZYTAJ DALEJ</p>
+                  <Arrow />
+                </More>
+              </Back>
+            </CardInner>
+          </Card>
+        ))}
+      </ArticleImageList>
+      <ButtonContainer>
+        <Button type="button" disabled={start < limit} onClick={handlePrevPage}>
+          Poprzednie artykuły
+        </Button>
+        <Button
+          type="button"
+          disabled={!articlesCount || start + limit >= articlesCount}
+          onClick={handleNextPage}
+        >
+          Następne artykuły
+        </Button>
+      </ButtonContainer>
+    </>
+  )
 }
 
 export default ArticleList
