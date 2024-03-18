@@ -10,6 +10,7 @@
     "strapi": "strapi"
   },
   "dependencies": {
+    "@vercel/postgres": "^0.7.2",
     "knex": "^0.20.0",
     "pg": "^8.6.0",
     "pg-connection-string": "^2.5.0",
