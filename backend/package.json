@@ -5,12 +5,11 @@
   "description": "A Strapi application",
   "scripts": {
     "develop": "strapi develop",
-    "start": "node ./api/index.js",
+    "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi"
   },
   "dependencies": {
-    "@vercel/postgres": "^0.7.2",
     "knex": "^0.21.18",
     "pg": "^8.6.0",
     "pg-connection-string": "^2.5.0",
