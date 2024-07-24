@@ -1,6 +1,6 @@
-const { createCoreRouter } = require('@strapi/strapi').factories;
+const { createCoreRouter } = require("@strapi/strapi").factories;
 
-module.exports = createCoreRouter('api::article.articles')
+module.exports = createCoreRouter("api::article.article");
 
 // , {
 //     routes: [

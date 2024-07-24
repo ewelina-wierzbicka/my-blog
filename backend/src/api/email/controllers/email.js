@@ -5,4 +5,7 @@
  * to customize this controller
  */
 
-module.exports = {};
+
+const { createCoreController } = require("@strapi/strapi").factories;
+
+module.exports = createCoreController("api::email.email");
