@@ -10,23 +10,23 @@ import Content from "../components/content"
 import ArticleList from "../components/articleList"
 import client from "../../graphQlClient"
 
-const SEARCH_QUERY = `query($search: String, $limit: Int, $start: Int) {
-  articles(where: { _or: [{title_contains: $search}, {text_contains: $search}] }, limit: $limit, start: $start) {
-    id
-    title
-    text
-    date
-    image {
-      url
-    }
-  }
-  articlesConnection(where: { _or: [{title_contains: $search}, {text_contains: $search}] }) {
-    aggregate {
-      count
-    }
-  }
-}
-`
+// const SEARCH_QUERY = `query($search: String, $limit: Int, $start: Int) {
+//   articles(where: { _or: [{title_contains: $search}, {text_contains: $search}] }, limit: $limit, start: $start) {
+//     id
+//     title
+//     text
+//     date
+//     image {
+//       url
+//     }
+//   }
+//   articlesConnection(where: { _or: [{title_contains: $search}, {text_contains: $search}] }) {
+//     aggregate {
+//       count
+//     }
+//   }
+// }
+// `
 
 const Menu = styled.div`
   display: flex;
@@ -65,24 +65,24 @@ const SearchText = ({ location }) => {
   const limit = 16
   const [start, setStart] = useState(0)
   const searchText = location?.pathname?.replace("/search:", "")
-  const { loading, error, data } = useQuery(SEARCH_QUERY, {
-    client,
-    variables: { search: searchText, limit, start },
-  })
+  // const { loading, error, data } = useQuery(SEARCH_QUERY, {
+  //   client,
+  //   variables: { search: searchText, limit, start },
+  // })
 
-  let articles = []
+  // let articles = []
   let articlesCount
-  if (data) {
-    articles = data.articles.map(article => ({
-      ...article,
-      articlePath: `/${slugify(article.title).replace("-h-", "/h-")}`,
-      imagePath: `${article.image.url}`,
-    }))
-    articlesCount = data.articlesConnection.aggregate.count
-  }
-  const sortedArticles = articles.sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
-  )
+  // if (data) {
+  //   articles = data.articles.map(article => ({
+  //     ...article,
+  //     articlePath: `/${slugify(article.title).replace("-h-", "/h-")}`,
+  //     imagePath: `${article.image.url}`,
+  //   }))
+  //   articlesCount = data.articlesConnection.aggregate.count
+  // }
+  // const sortedArticles = articles.sort(
+  //   (a, b) => new Date(b.date) - new Date(a.date)
+  // )
   return (
     <Layout>
       <Menu>
@@ -90,7 +90,7 @@ const SearchText = ({ location }) => {
         <Search />
       </Menu>
       <MainContent>
-        {loading && (
+        {/* {loading && (
           <LoadingWrapper>
             <CircularProgress />
           </LoadingWrapper>
@@ -114,7 +114,7 @@ const SearchText = ({ location }) => {
           <ErrorWrapper>
             <div>Wystąpił błąd</div>
           </ErrorWrapper>
-        )}
+        )} */}
       </MainContent>
     </Layout>
   )

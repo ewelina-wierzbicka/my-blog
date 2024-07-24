@@ -9,23 +9,23 @@ import Search from "../components/search"
 import Content from "../components/content"
 import client from "../../graphQlClient"
 
-const ARTICLES_QUERY = `query($limit: Int, $start: Int) {
-    articles(limit: $limit, start: $start) {
-          id
-          text
-          title
-          date
-          image {
-            url
-          }
-        }
-          articlesConnection {
-            aggregate {
-              totalCount
-            }
-          }
-      }
-`
+// const ARTICLES_QUERY = `query($limit: Int, $start: Int) {
+//     articles(limit: $limit, start: $start) {
+//           id
+//           text
+//           title
+//           date
+//           image {
+//             url
+//           }
+//         }
+//           articlesConnection {
+//             aggregate {
+//               totalCount
+//             }
+//           }
+//       }
+// `
 
 const Menu = styled.div`
   display: flex;
@@ -44,26 +44,26 @@ const MainContent = styled(Content)`
 `
 
 const IndexPage = () => {
-  const limit = 16;
-  const [start, setStart] = useState(0)
-  const { data } = useQuery(ARTICLES_QUERY, {
-    client,
-    variables: { limit, start },
-  })
-  let articles = [];
-  let articlesCount;
-  if (data) {
-    articles = data.articles.map(article => ({
-      ...article,
-      articlePath: `/${slugify(article.title).replace("-h-", "/h-")}`,
-      imagePath: `${article.image.url}`,
-    }))
-    articlesCount = data.articlesConnection.aggregate.totalCount;
-  }
+  // const limit = 16;
+  // const [start, setStart] = useState(0)
+  // const { data } = useQuery(ARTICLES_QUERY, {
+  //   client,
+  //   variables: { limit, start },
+  // })
+  // let articles = [];
+  // let articlesCount;
+  // if (data) {
+  //   articles = data.articles.map(article => ({
+  //     ...article,
+  //     articlePath: `/${slugify(article.title).replace("-h-", "/h-")}`,
+  //     imagePath: `${article.image.url}`,
+  //   }))
+  //   articlesCount = data.articlesConnection.aggregate.totalCount;
+  // }
 
-  const sortedArticles = articles?.sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
-  )
+  // const sortedArticles = articles?.sort(
+  //   (a, b) => new Date(b.date) - new Date(a.date)
+  // )
   return (
     <Layout>
       <Menu>
@@ -71,7 +71,7 @@ const IndexPage = () => {
         <Search />
       </Menu>
       <MainContent>
-        <ArticleList articles={sortedArticles} start={start} setStart={setStart} limit={limit} articlesCount={articlesCount}/>
+        {/* <ArticleList articles={sortedArticles} start={start} setStart={setStart} limit={limit} articlesCount={articlesCount}/> */}
       </MainContent>
     </Layout>
   )

@@ -2,20 +2,20 @@ import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from "styled-components"
 
-const articlesQuery = graphql`
-  query {
-    allStrapiArticle {
-      edges {
-        node {
-          id
-          title
-          date
-          articlePath: gatsbyPath(filePath: "/{strapiArticle.title}")
-        }
-      }
-    }
-  }
-`
+// const articlesQuery = graphql`
+//   query {
+//     allStrapiArticle {
+//       edges {
+//         node {
+//           id
+//           title
+//           date
+//           articlePath: gatsbyPath(filePath: "/{strapiArticle.title}")
+//         }
+//       }
+//     }
+//   }
+// `
 
 const ListTitle = styled.p`
   text-transform: uppercase;
@@ -76,20 +76,20 @@ const ArticleLink = styled(Link)`
 `
 
 const LastArticles = ({ className }) => {
-  const data = useStaticQuery(articlesQuery)
-  const articles = data.allStrapiArticle.edges
-  const sortedLastArticles = articles
-    .sort((a, b) => new Date(b.node.date) - new Date(a.node.date))
-    .slice(0, 12)
+  // const data = useStaticQuery(articlesQuery)
+  // const articles = data.allStrapiArticle.edges
+  // const sortedLastArticles = articles
+  //   .sort((a, b) => new Date(b.node.date) - new Date(a.node.date))
+  //   .slice(0, 12)
   return (
     <div className={className}>
       <ListTitle>Najnowsze artykuły</ListTitle>
       <ArticleTitleList>
-        {sortedLastArticles.map(el => (
+        {/* {sortedLastArticles.map(el => (
           <ArticleTitle key={el.node.id}>
             <ArticleLink to={el.node.articlePath}>{el.node.title}</ArticleLink>
           </ArticleTitle>
-        ))}
+        ))} */}
       </ArticleTitleList>
     </div>
   )
