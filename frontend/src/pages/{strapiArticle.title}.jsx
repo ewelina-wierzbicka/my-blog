@@ -5,14 +5,18 @@ import ReactMarkdown from "react-markdown"
 import Layout from "../components/layout"
 import Content from "../components/content"
 
-// export const articlesQuery = graphql`
-//   query($id: String) {
-//     strapiArticle(id: { eq: $id }) {
-//       title
-//       text
-//     }
-//   }
-// `
+export const articlesQuery = graphql`
+  query($id: String) {
+    strapiArticle(id: { eq: $id }) {
+      title
+      text {
+          data {
+            text
+          }
+}
+    }
+  }
+`
 
 const Title = styled.h1`
   text-transform: uppercase;
@@ -54,19 +58,19 @@ const ArticleContent = styled.div`
 `
 
 const Article = props => {
-  // const { data } = props
+  const { data } = props
   return (
     <Layout>
       <MainContent>
         <ArticleContent>
-          {/* <Title>{data.strapiArticle.title}</Title> */}
+          <Title>{data.strapiArticle.title}</Title>
           <Text
-            // source={data.strapiArticle.text}
-            // transformImageUri={uri =>
-            //   uri.startsWith("http")
-            //     ? uri
-            //     : `${process.env.GATSBY_API_URL}/${uri}`
-            // }
+            source={data.strapiArticle.text.data.text}
+            transformImageUri={uri =>
+              uri.startsWith("http")
+                ? uri
+                : `${process.env.GATSBY_API_URL}/${uri}`
+            }
           />
         </ArticleContent>
       </MainContent>

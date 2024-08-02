@@ -8,13 +8,13 @@ import Layout from "../components/layout"
 import contactSchema from "../schemas/contactSchema"
 import client from "../../graphQlClient"
 
-// const EMAIL_MUTATION = `mutation SendContact($email: createEmailInput) {
-//   createEmail(input: $email) {
-//     email {
-//       id
-//     }
-//   }
-// }`
+const EMAIL_MUTATION = `mutation SendContact($email: EmailInput!) {
+  createEmail(data: $email) {
+    data {
+      id
+    }
+  }
+}`
 
 const ContactHeader = styled.h1`
   font-size: calc(2vw + 6px);
@@ -47,10 +47,12 @@ const ContactForm = styled.form`
 `
 const Input = styled.input`
   margin-top: 10px;
+  padding: 0 6px;
 `
 
 const Textarea = styled.textarea`
   margin-top: 10px;
+  padding: 6px;
 `
 
 const ErrorMessage = styled.div`
@@ -62,10 +64,13 @@ const Button = styled.button`
   background-color: #212036;
   color: #ffffff;
   border: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  cursor: pointer;
 `
 
 const Contact = () => {
-  // const [createEmail, state] = useMutation(EMAIL_MUTATION, { client })
+  const [createEmail, state] = useMutation(EMAIL_MUTATION, { client })
   const formik = useFormik({
     initialValues: {
       firstname: "",
@@ -74,18 +79,17 @@ const Contact = () => {
     },
     validationSchema: contactSchema,
     onSubmit: values => {
-      // createEmail({ variables: { email: { data: values } } })
-      console.log(values);
+      createEmail({ variables: { email: values } })
     },
   })
-  // useEffect(() => {
-  //   if (state.data?.createEmail) {
-  //     toast.success("Mail zostal wysłany")
-  //     formik.resetForm()
-  //   } else if (state.error) {
-  //     toast.error("Wystąpił błąd")
-  //   }
-  // }, [state.data, state.error])
+  useEffect(() => {
+    if (state.data?.createEmail) {
+      toast.success("Mail zostal wysłany")
+      formik.resetForm()
+    } else if (state.error) {
+      toast.error("Wystąpił błąd")
+    }
+  }, [state.data, state.error])
 
   return (
     <Layout>
