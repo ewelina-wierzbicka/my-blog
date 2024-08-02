@@ -1,7 +1,0 @@
-{
-    "endpoint": "/graphql",
-    "playgroundAlways": true,
-    "shadowCRUD": true,
-    "depthLimit": 7,
-    "amountLimit": 100
-  }

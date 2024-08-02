@@ -1,24 +1,20 @@
 module.exports = ({ env }) => ({
   email: {
-    // enabled: true,
-    // reaolve: 'sendmail',
     config: {
       provider: 'strapi-provider-email-smtp',
       providerOptions: {
         host: env('SMTP_HOST'),
         port: env('SMTP_PORT'),
-        secure: false,
+        secure: true,
         username: env('SMTP_USERNAME'),
         password: env('SMTP_PASSWORD'),
         rejectUnauthorized: true,
-        requireTLS: false,
-        connectionTimeout: 1,
+        requireTLS: true,
+        connectionTimeout: 4,
       },
     },
   },
   upload: {
-    // enabled: true,
-    // resolve: '@strapi/provider-upload-cloudinary',
     config: {
       provider: 'cloudinary',
       providerOptions: {
@@ -29,6 +25,23 @@ module.exports = ({ env }) => ({
       actionOptions: {
         upload: {},
         delete: {},
+      },
+    },
+  },
+  'users-permissions': {
+    config: {
+      jwtSecret: env('JWT_SECRET')
+    },
+  },
+  graphql: {
+    config: {
+      endpoint: '/graphql',
+      shadowCRUD: true,
+      playgroundAlways: false,
+      depthLimit: 7,
+      amountLimit: 100,
+      apolloServer: {
+        tracing: false,
       },
     },
   },
