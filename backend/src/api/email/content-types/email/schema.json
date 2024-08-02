@@ -2,8 +2,10 @@
   "kind": "collectionType",
   "collectionName": "emails",
   "info": {
-    "name": "email",
-    "description": ""
+    "singularName": "email",
+    "pluralName": "emails",
+    "displayName": "email",
+    "name": "email"
   },
   "options": {
     "draftAndPublish": false,

@@ -9,7 +9,11 @@ export const articlesQuery = graphql`
   query($id: String) {
     strapiArticle(id: { eq: $id }) {
       title
-      text
+      text {
+          data {
+            text
+          }
+}
     }
   }
 `
@@ -61,7 +65,7 @@ const Article = props => {
         <ArticleContent>
           <Title>{data.strapiArticle.title}</Title>
           <Text
-            source={data.strapiArticle.text}
+            source={data.strapiArticle.text.data.text}
             transformImageUri={uri =>
               uri.startsWith("http")
                 ? uri

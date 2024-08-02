@@ -11,18 +11,26 @@ import ArticleList from "../components/articleList"
 import client from "../../graphQlClient"
 
 const SEARCH_QUERY = `query($search: String, $limit: Int, $start: Int) {
-  articles(where: { _or: [{title_contains: $search}, {text_contains: $search}] }, limit: $limit, start: $start) {
-    id
-    title
-    text
-    date
-    image {
-      url
+  articles(filters: { or: [{title: {contains: $search}}, {text: {contains: $search}}] }, pagination: {limit: $limit, start: $start}) {
+    data {
+      id,
+      attributes {
+        title,
+        text,
+        date,
+        image {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
     }
-  }
-  articlesConnection(where: { _or: [{title_contains: $search}, {text_contains: $search}] }) {
-    aggregate {
-      count
+    meta {
+      pagination {
+        total
+      }
     }
   }
 }
@@ -70,17 +78,22 @@ const SearchText = ({ location }) => {
     variables: { search: searchText, limit, start },
   })
 
-  let articles = []
-  let articlesCount
+  let articlesList = []
+  let articlesCount;
   if (data) {
-    articles = data.articles.map(article => ({
-      ...article,
-      articlePath: `/${slugify(article.title).replace("-h-", "/h-")}`,
-      imagePath: `${article.image.url}`,
-    }))
-    articlesCount = data.articlesConnection.aggregate.count
+    const { articles } = data;
+    articlesList = articles.data.map(article => {
+      const { title, image: {data: {attributes: {url}}}, ...rest } = article.attributes;
+      return ({
+        id: article.id,
+      articlePath: `/${slugify(title).replace("-h-", "/h-")}`,
+      imagePath: `${url}`,
+      ...rest,
+    })
+  })
+    articlesCount = articles.meta.pagination.total;
   }
-  const sortedArticles = articles.sort(
+  const sortedArticles = articlesList.sort(
     (a, b) => new Date(b.date) - new Date(a.date)
   )
   return (

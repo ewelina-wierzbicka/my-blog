@@ -2,6 +2,9 @@
   "kind": "collectionType",
   "collectionName": "articles",
   "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "article",
     "name": "article",
     "description": ""
   },
@@ -19,19 +22,18 @@
       "type": "richtext",
       "required": true
     },
-    "image": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "files",
-        "images",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
     "date": {
       "type": "date"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

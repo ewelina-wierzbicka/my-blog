@@ -10,21 +10,29 @@ import Content from "../components/content"
 import client from "../../graphQlClient"
 
 const ARTICLES_QUERY = `query($limit: Int, $start: Int) {
-    articles(limit: $limit, start: $start) {
-          id
-          text
-          title
-          date
-          image {
-            url
-          }
-        }
-          articlesConnection {
-            aggregate {
-              totalCount
+  articles(pagination: {limit: $limit, start: $start}) {
+    data {
+      id,
+      attributes {
+        text,
+        title,
+        date,
+        image {
+          data {
+            attributes {
+              url
             }
           }
+        }
       }
+    },
+    meta {
+      pagination {
+        total
+      }
+    }
+  }
+}
 `
 
 const Menu = styled.div`
@@ -48,22 +56,28 @@ const IndexPage = () => {
   const [start, setStart] = useState(0)
   const { data } = useQuery(ARTICLES_QUERY, {
     client,
-    variables: { limit, start },
+    variables: { limit: 10, start: 0 },
   })
-  let articles = [];
+  let articlesList = [];
   let articlesCount;
   if (data) {
-    articles = data.articles.map(article => ({
-      ...article,
-      articlePath: `/${slugify(article.title).replace("-h-", "/h-")}`,
-      imagePath: `${article.image.url}`,
-    }))
-    articlesCount = data.articlesConnection.aggregate.totalCount;
+    const {articles} = data;
+    articlesList = articles.data.map(article => {
+      const { title, image: {data: {attributes: {url}}}, ...rest } = article.attributes;
+      return ({
+      id: article.id,
+      articlePath: `/${slugify(title).replace("-h-", "/h-")}`,
+      imagePath: url,
+      ...rest,
+    })
+  })
+    articlesCount = articles.meta.pagination.total;
   }
 
-  const sortedArticles = articles?.sort(
+  const sortedArticles = articlesList?.sort(
     (a, b) => new Date(b.date) - new Date(a.date)
   )
+
   return (
     <Layout>
       <Menu>

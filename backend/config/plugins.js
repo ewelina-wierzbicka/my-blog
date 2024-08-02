@@ -1,27 +1,48 @@
 module.exports = ({ env }) => ({
   email: {
-    provider: 'smtp',
-    providerOptions: {
-      host: env('SMTP_HOST'),
-      port: env('SMTP_PORT'),
-      secure: false,
-      username: env('SMTP_USERNAME'),
-      password: env('SMTP_PASSWORD'),
-      rejectUnauthorized: true,
-      requireTLS: false,
-      connectionTimeout: 1,
+    config: {
+      provider: 'strapi-provider-email-smtp',
+      providerOptions: {
+        host: env('SMTP_HOST'),
+        port: env('SMTP_PORT'),
+        secure: true,
+        username: env('SMTP_USERNAME'),
+        password: env('SMTP_PASSWORD'),
+        rejectUnauthorized: true,
+        requireTLS: true,
+        connectionTimeout: 4,
+      },
     },
   },
   upload: {
-    provider: 'cloudinary',
-    providerOptions: {
-      cloud_name: env('CLOUDINARY_NAME'),
-      api_key: env('CLOUDINARY_KEY'),
-      api_secret: env('CLOUDINARY_SECRET'),
+    config: {
+      provider: 'cloudinary',
+      providerOptions: {
+        cloud_name: env('CLOUDINARY_NAME'),
+        api_key: env('CLOUDINARY_KEY'),
+        api_secret: env('CLOUDINARY_SECRET'),
+      },
+      actionOptions: {
+        upload: {},
+        delete: {},
+      },
     },
-    actionOptions: {
-      upload: {},
-      delete: {},
+  },
+  'users-permissions': {
+    config: {
+      jwtSecret: env('JWT_SECRET')
+    },
+  },
+  graphql: {
+    config: {
+      endpoint: '/graphql',
+      shadowCRUD: true,
+      playgroundAlways: false,
+      depthLimit: 7,
+      amountLimit: 100,
+      apolloServer: {
+        tracing: false,
+      },
     },
   },
 });

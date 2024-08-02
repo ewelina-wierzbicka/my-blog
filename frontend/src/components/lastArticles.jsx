@@ -22,36 +22,36 @@ const ListTitle = styled.p`
   font-weight: bold;
   margin: 0;
   position: relative;
-  font-size: calc(8px + 0.5vw);
+  font-size: calc(9px + 0.6vw);
   text-align: center;
   &:before {
     content: "";
     position: absolute;
-    top: calc(4px + 0.25vw);
-    left: 1.8vw;
+    top: calc(5px + 0.35vw);
+    left: 0.7vw;
     width: 4vw;
     height: 2px;
     background-color: #bfbfbf;
     @media (min-width: 870px) and (max-width: 1100px) {
-      left: 0vw;
+      left: -1vw;
     }
     @media (max-width: 870px) {
-      left: -1vw;
+      left: -2vw;
     }
   }
   &:after {
     content: "";
     position: absolute;
-    top: calc(4px + 0.25vw);
-    right: 1.8vw;
+    top: calc(5px + 0.35vw);
+    right: 0.7vw;
     width: 4vw;
     height: 2px;
     background-color: #bfbfbf;
     @media (min-width: 870px) and (max-width: 1100px) {
-      right: 0vw;
+      right: -1vw;
     }
     @media (max-width: 870px) {
-      right: -1vw;
+      right: -2vw;
     }
   }
 `
@@ -66,7 +66,7 @@ const ArticleTitleList = styled.ul`
 `
 
 const ArticleTitle = styled.li`
-  font-size: calc(8px + 0.5vw);
+  font-size: calc(11px + 0.3vw);
   margin-bottom: 8px;
 `
 
