@@ -41,8 +41,8 @@ const ContactForm = styled.form`
   }
   & button {
     width: 100px;
-    height: 30px;
     margin: 40px auto;
+    padding: 12px;
   }
 `
 const Input = styled.input`

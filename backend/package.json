@@ -5,18 +5,16 @@
   "description": "A Strapi application",
   "scripts": {
     "develop": "strapi develop",
-    "start": "NODE_ENV=development strapi start",
-    "start:production": "NODE_ENV=production strapi start",
+    "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-graphql": "^4.1.8",
-    "@strapi/plugin-users-permissions": "4.1.8",
-    "@strapi/provider-upload-cloudinary": "4.1.8",
-    "@strapi/strapi": "4.1.8",
+    "@strapi/plugin-graphql": "^4.3.8",
+    "@strapi/plugin-users-permissions": "4.3.8",
+    "@strapi/provider-upload-cloudinary": "4.3.8",
+    "@strapi/strapi": "4.3.8",
     "better-sqlite3": "7.4.6",
-    "dotenv": "^16.4.5",
     "npm": "^6.14.18",
     "pg": "8.12.0",
     "pg-connection-string": "^2.5.0",
