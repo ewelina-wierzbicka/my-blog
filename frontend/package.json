@@ -29,6 +29,7 @@
     "react-helmet": "^6.1.0",
     "react-markdown": "^5.0.3",
     "react-toastify": "^7.0.3",
+    "serve": "^14.2.4",
     "styled-components": "^5.2.1",
     "yup": "^0.32.9"
   },
@@ -51,10 +52,11 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
+    "start": "serve -p ${PORT} public",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "heroku-postbuild": "gatsby build"
   },
   "repository": {
     "type": "git",
