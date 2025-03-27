@@ -22,8 +22,12 @@ module.exports = {
       resolve: "gatsby-source-strapi",
       options: {
         apiURL: process.env.GATSBY_API_URL,
+        accessToken: process.env.STRAPI_TOKEN,
         collectionTypes: ["article", "email"],
         queryLimit: 1000,
+        headers: {
+          Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
+        },
       },
     },
     {
